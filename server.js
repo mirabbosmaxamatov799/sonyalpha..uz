@@ -29,3 +29,8 @@ app.listen(PORT, () => {
   console.log(`   API: http://localhost:${PORT}/api/products`);
   console.log(`   Admin login: admin / admin123`);
 });
+
+
+
+
+import { Analytics } from "@vercel/analytics/next"
