@@ -794,6 +794,15 @@
       transform: scale(1.08)
     }
 
+    .prod-desc {
+      font-family: var(--fm);
+      font-size: 12px;
+      color: var(--g4);
+      margin: 8px 0;
+      min-height: 34px;
+      overflow: hidden;
+    }
+
     .badge {
       position: absolute;
       top: 10px;
@@ -835,14 +844,35 @@
       font-size: 9px;
       color: var(--g4);
       letter-spacing: 1px;
-      margin-bottom: 14px
+      margin-bottom: 6px
+    }
+
+    .prod-cat {
+      font-size: 10px;
+      color: var(--g5);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
     }
 
     .prod-footer {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-top: auto
+      margin-top: auto;
+    }
+
+    .catalog-group {
+      margin-bottom: 26px;
+    }
+
+    .catalog-group-title {
+      font-family: var(--fd);
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin: 18px 0 12px;
     }
 
     .prod-price-lbl {
@@ -1273,6 +1303,26 @@
       justify-content: space-between;
       margin-bottom: 28px
     }
+
+    .catalog-view-toggle {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--g4);
+    }
+    .catalog-view-toggle button {
+      background: transparent;
+      border: 1px solid var(--g3);
+      color: var(--white);
+      padding: 6px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: var(--fb);
+    }
+    .catalog-view-toggle button.active { background: var(--red); border-color: var(--red); }
+
+    .prod-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:6px; }
 
     .catalog-title {
       font-family: var(--fd);
@@ -2687,8 +2737,71 @@
           </svg></a>
       </div>
       <div class="prod-grid fi" id="homeProdGrid">
-        <div class="loading">
-          <div class="spin"></div>Загрузка...
+        <div class="prod-card" onclick="openProduct('ilce-7c')">
+          <div class="prod-img">
+            <img src="./public/images/a7V-image.jpg" alt="">
+            <span class="badge badge-top">Топ</span>
+            <svg width="150" height="120" viewBox="0 0 150 120" fill="none"><rect x="15" y="28" width="120" height="70" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="15" y="40" width="22" height="58" rx="8" fill="#161616"/><circle cx="82" cy="63" r="30" fill="#111" stroke="#222" stroke-width="1.5"/><circle cx="82" cy="63" r="22" fill="#0d0d0d"/><circle cx="82" cy="63" r="14" fill="#060d1a"/><circle cx="108" cy="46" r="3.5" fill="#cc1e1e"/><rect x="50" y="22" width="52" height="10" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/><text x="75" y="100" font-family="DM Sans" font-size="6" fill="#333" letter-spacing="2" text-anchor="middle">SONY</text><text x="108" y="103" font-family="DM Sans" font-size="13" fill="#cc1e1e">α</text></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">Sony Alpha 7C</div>
+            <div class="prod-model">ILCE-7C</div>
+            <div class="prod-footer">
+              <div><div class="prod-price-lbl">Цена</div><div class="prod-price">20 608 000 сум</div></div>
+              <button class="btn-add" onclick="event.stopPropagation();toast('Добавлено в корзину')">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card" onclick="openProduct('ilce-7m4')">
+          <div class="prod-img">
+            <img src="./public/images/a7V-image.jpg" alt="">
+            <span class="badge badge-new">Новинка</span>
+            <svg width="150" height="120" viewBox="0 0 150 120" fill="none"><rect x="15" y="28" width="120" height="70" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="15" y="40" width="22" height="58" rx="8" fill="#161616"/><circle cx="82" cy="63" r="30" fill="#111" stroke="#222" stroke-width="1.5"/><circle cx="82" cy="63" r="22" fill="#0d0d0d"/><circle cx="82" cy="63" r="14" fill="#060d1a"/><circle cx="108" cy="46" r="3.5" fill="#cc1e1e"/><rect x="50" y="22" width="52" height="10" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/><text x="75" y="100" font-family="DM Sans" font-size="6" fill="#333" letter-spacing="2" text-anchor="middle">SONY</text><text x="108" y="103" font-family="DM Sans" font-size="13" fill="#cc1e1e">α</text></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">Sony Alpha 7 IV</div>
+            <div class="prod-model">ILCE-7M4</div>
+            <div class="prod-footer">
+              <div><div class="prod-price-lbl">Цена</div><div class="prod-price">35 420 000 сум</div></div>
+              <button class="btn-add" onclick="event.stopPropagation();toast('Добавлено в корзину')">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card" onclick="openProduct('rx100-vii')">
+          <div class="prod-img">
+            <img src="./public/images/a7V-image.jpg" alt="">
+            <span class="badge badge-top">Топ</span>
+            <svg width="150" height="120" viewBox="0 0 150 120" fill="none"><rect x="15" y="28" width="120" height="70" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="15" y="40" width="22" height="58" rx="8" fill="#161616"/><circle cx="82" cy="63" r="30" fill="#111" stroke="#222" stroke-width="1.5"/><circle cx="82" cy="63" r="22" fill="#0d0d0d"/><circle cx="82" cy="63" r="14" fill="#060d1a"/><circle cx="108" cy="46" r="3.5" fill="#cc1e1e"/><rect x="50" y="22" width="52" height="10" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/><text x="75" y="100" font-family="DM Sans" font-size="6" fill="#333" letter-spacing="2" text-anchor="middle">SONY</text><text x="108" y="103" font-family="DM Sans" font-size="13" fill="#cc1e1e">α</text></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">Sony RX100 VII</div>
+            <div class="prod-model">DSC-RX100M7</div>
+            <div class="prod-footer">
+              <div><div class="prod-price-lbl">Цена</div><div class="prod-price">9 800 000 сум</div></div>
+              <button class="btn-add" onclick="event.stopPropagation();toast('Добавлено в корзину')">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card" onclick="openProduct('sel2470gm')">
+          <div class="prod-img">
+            <svg width="100" height="70" viewBox="0 0 100 70" fill="none"><rect x="10" y="10" width="80" height="50" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="22" y="22" width="56" height="26" rx="4" fill="#111" stroke="#222"/><rect x="38" y="6" width="24" height="8" rx="3" fill="#222" stroke="#333"/><circle cx="50" cy="35" r="8" fill="#060d1a" stroke="#1a2030"/><circle cx="50" cy="35" r="4" fill="#040a12"/></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">FE 24-70mm f/2.8 GM</div>
+            <div class="prod-model">SEL2470GM</div>
+            <div class="prod-footer">
+              <div><div class="prod-old-price">17 800 000 сум</div><div class="prod-price-lbl">Цена</div><div class="prod-price">15 000 000 сум</div></div>
+              <button class="btn-add" onclick="event.stopPropagation();toast('Добавлено в корзину')">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2790,7 +2903,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">© 202 SonyAlpha.uz — Все права защищены</span>
+        <span class="footer-copy">© 2026 SonyAlpha.uz — Все права защищены</span>
         <div class="footer-loc"><span class="loc-dot"></span>Ташкент, Узбекистан</div>
       </div>
     </footer>
@@ -2832,7 +2945,13 @@
             <div class="eyebrow" id="catalogEyebrow">Каталог</div>
             <h1 class="catalog-title" id="catalogTitle">ВСЕ ТОВАРЫ</h1>
           </div>
-          <div class="catalog-count" id="catalogCount"></div>
+          <div style="display:flex;gap:15px;align-items:center">
+            <div class="catalog-count" id="catalogCount"></div>
+            <div class="catalog-view-toggle" id="catalogViewToggle">
+              <button id="viewGroupBtn" onclick="setCatalogView('group')">По категориям</button>
+              <button id="viewAllRowBtn" onclick="setCatalogView('allrow')">Все в строку</button>
+            </div>
+          </div>
         </div>
         <div class="prod-grid col3" id="catalogGrid">
           <div class="loading">
@@ -3115,8 +3234,18 @@
     let currentProduct = null;
     let currentQty = 1;
     let adminToken = localStorage.getItem('sa_admin_token') || '';
-    let catalogParams = { category: '', sort: '', badge: '' };
+    let catalogParams = { category: '', sort: '', badge: '', view: 'group' };
     let prevPage = 'home';
+
+    const sampleProducts = [
+      { slug: 'ilce-7c', category_slug: 'mirrorless', category_name: 'Беззеркальные камеры', badge: 'top', name_ru: 'Sony Alpha 7C', model: 'ILCE-7C', price: 20608000 },
+      { slug: 'ilce-7m4', category_slug: 'mirrorless', category_name: 'Беззеркальные камеры', badge: 'new', name_ru: 'Sony Alpha 7 IV', model: 'ILCE-7M4', price: 35420000 },
+      { slug: 'rx100-vii', category_slug: 'compact', category_name: 'Компактные камеры', badge: 'top', name_ru: 'Sony RX100 VII', model: 'DSC-RX100M7', price: 9800000 },
+      { slug: 'sel2470gm', category_slug: 'lenses', category_name: 'Объективы', badge: '', name_ru: 'FE 24-70mm f/2.8 GM', model: 'SEL2470GM', price: 15000000, old_price: 17800000 },
+      { slug: 'fx3', category_slug: 'video', category_name: 'Видеокамеры', badge: '', name_ru: 'Sony FX3', model: 'ILME-FX3', price: 42000000, description_ru: 'Кино-камерa full-frame, компактный корпус для съемки видео.' },
+      { slug: 'fx2', category_slug: 'video', category_name: 'Видеокамеры', badge: '', name_ru: 'Sony FX2', model: 'ILME-FX2', price: 52000000, description_ru: 'Профессиональная кинокамера с поддержкой высоких битрейтов.' },
+      { slug: 'sony-headphones', category_slug: 'accessories', category_name: 'Аксессуары', badge: '', name_ru: 'Sony Headphones', model: 'WH-1000XM5', price: 3500000, description_ru: 'Беспроводные шумоподавляющие наушники Sony.' }
+    ];
 
     // ── CURSOR ──────────────────────────────────────
     const cur = document.getElementById('cur');
@@ -3175,20 +3304,52 @@
     // ── PRODUCT CARD HTML ─────────────────────────────
     function prodCardHTML(p) {
       const badge = p.badge === 'top' ? `<span class="badge badge-top">Топ</span>` : p.badge === 'new' ? `<span class="badge badge-new">Новинка</span>` : '';
+      const categoryLabel = p.category_name || p.category_slug ? `<div class="prod-cat">${p.category_name || p.category_slug}</div>` : '';
       const oldP = p.old_price ? `<div class="prod-old-price">${fmt(p.old_price)}</div>` : '';
+      // image slot: prefer server-provided `images[0]`, fallback to public/images/<slug>.jpg
+      const imgSrc = (p.images && p.images.length) ? p.images[0] : `public/images/${p.slug}.jpg`;
+      const imgTag = `<img class="prod-photo" src="${imgSrc}" alt="${p.name_ru}" onerror="this.style.display='none'"/>`;
       return `<div class="prod-card" onclick="openProduct('${p.slug}')">
-    <div class="prod-img">${badge}${prodSVG(p.category_slug || p.cat)}</div>
+    <div class="prod-img">${imgTag}${badge}${prodSVG(p.category_slug || p.cat)}</div>
     <div class="prod-body">
       <div class="prod-name">${p.name_ru}</div>
       <div class="prod-model">${p.model}</div>
+      ${categoryLabel}
+      <div class="prod-desc">${(p.description_ru || '').replace(/</g,'&lt;')}</div>
       <div class="prod-footer">
         <div>${oldP}<div class="prod-price-lbl">Цена</div><div class="prod-price">${fmt(p.price)}</div></div>
-        <button class="btn-add" onclick="event.stopPropagation();quickAddCart(${JSON.stringify(p).replace(/"/g, '&quot;')})">
+        <button class="btn-add" onclick="event.stopPropagation();quickAddCart(${JSON.stringify(p).replace(/\"/g, '&quot;')})">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
         </button>
       </div>
     </div>
   </div>`;
+    }
+
+    // duplicate spreading helper: interleave copies so duplicates are distributed
+    function spreadDuplicates(items, copies = 5) {
+      if (!items || !items.length) return [];
+      const n = items.length;
+      if (n === 1) {
+        // single item: just repeat
+        return Array.from({ length: copies }, () => items[0]);
+      }
+      const res = [];
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < copies; j++) {
+          res.push(items[(i + j) % n]);
+        }
+      }
+      return res;
+    }
+
+    function padToCols(arr, cols = 3) {
+      if (!arr || !arr.length) return arr;
+      const res = arr.slice();
+      while (res.length % cols !== 0) {
+        res.push(res[res.length % arr.length]);
+      }
+      return res;
     }
 
     // ── NEWS ROW HTML ─────────────────────────────────
@@ -3218,10 +3379,15 @@
         const grid = document.getElementById('homeProdGrid');
         if (grid) {
           const top = (d.products || []).filter(p => p.badge === 'top').slice(0, 4);
-          const show = top.length ? top : (d.products || []).slice(0, 4);
+          let show = top.length ? top : (d.products || []).slice(0, 4);
+          if (!show.length) show = sampleProducts;
           grid.innerHTML = show.map(prodCardHTML).join('') || '<div class="empty-state">Нет товаров</div>';
         }
-      } catch (e) { console.error(e); }
+      } catch (e) {
+        console.error(e);
+        const grid = document.getElementById('homeProdGrid');
+        if (grid) grid.innerHTML = sampleProducts.map(prodCardHTML).join('');
+      }
       // News preview
       try {
         const r = await fetch(`${API}/news`);
@@ -3251,9 +3417,16 @@
 
     async function initCatalog(cat) {
       if (cat !== undefined) catalogParams.category = cat;
-      const { category, sort, badge } = catalogParams;
+      const { category, sort, badge, view } = catalogParams;
       document.getElementById('catalogTitle').textContent = catNames[category] || 'ВСЕ ТОВАРЫ';
       document.getElementById('catalogEyebrow').textContent = catEyebrow[category] || 'Каталог';
+      // update view toggle buttons state
+      const gbtn = document.getElementById('viewGroupBtn');
+      const abtn = document.getElementById('viewAllRowBtn');
+      if (gbtn && abtn) {
+        gbtn.classList.toggle('active', view === 'group');
+        abtn.classList.toggle('active', view === 'allrow');
+      }
       document.getElementById('catalogGrid').innerHTML = '<div class="loading"><div class="spin"></div>Загрузка...</div>';
       // sync sidebar buttons
       document.querySelectorAll('.filter-btn').forEach(b => {
@@ -3264,17 +3437,54 @@
       if (category) url += `&category=${category}`;
       if (sort) url += `&sort=${sort}`;
       if (badge) url += `&badge=${badge}`;
+      const renderCatalogItems = items => {
+        const copies = 5;
+        if (!category) {
+          // when view is 'allrow' show all products interleaved across the single grid
+          if (view === 'allrow') {
+            let display = spreadDuplicates(items, copies);
+            display = padToCols(display, 3);
+            return `<div class="prod-grid col3">${display.map(prodCardHTML).join('')}</div>`;
+          }
+          // default grouped view: render each category in its own row, but spread duplicates within each row
+          const groups = items.reduce((acc, p) => {
+            const key = p.category_name || p.category_slug || 'Категория';
+            (acc[key] = acc[key] || []).push(p);
+            return acc;
+          }, {});
+          return Object.entries(groups).map(([cat, items]) => {
+            let display = spreadDuplicates(items, copies);
+            display = padToCols(display, 3);
+            return `
+            <div class="catalog-group">
+              <div class="catalog-group-title">${cat}</div>
+              <div class="prod-grid col3">${display.map(prodCardHTML).join('')}</div>
+            </div>`;
+          }).join('');
+        }
+        // single-category view: spread duplicates within that category
+        let display = spreadDuplicates(items, copies);
+        display = padToCols(display, 3);
+        return `<div class="prod-grid col3">${display.map(prodCardHTML).join('')}</div>`;
+      };
       try {
         const r = await fetch(url);
         const d = await r.json();
         const prods = d.products || [];
         document.getElementById('catalogCount').textContent = `${prods.length} товаров`;
         document.getElementById('catalogGrid').innerHTML = prods.length
-          ? prods.map(prodCardHTML).join('')
+          ? renderCatalogItems(prods)
           : '<div class="empty-state">😕<br>Товары не найдены</div>';
       } catch (e) {
-        document.getElementById('catalogGrid').innerHTML = '<div class="empty-state">Ошибка загрузки</div>';
+        const fallbackItems = category ? sampleProducts.filter(p => p.category_slug === category) : sampleProducts;
+        document.getElementById('catalogGrid').innerHTML = renderCatalogItems(fallbackItems);
       }
+    }
+    function setCatalogView(v) {
+      catalogParams.view = v;
+      document.getElementById('viewGroupBtn').classList.toggle('active', v === 'group');
+      document.getElementById('viewAllRowBtn').classList.toggle('active', v === 'allrow');
+      initCatalog();
     }
     function filterCat(cat, btn) {
       catalogParams.category = cat;
@@ -3324,11 +3534,12 @@
         // Related
         document.getElementById('relatedGrid').innerHTML = (d.related || []).length
           ? d.related.map(rp => prodCardHTML({ ...rp, category_slug: cat })).join('')
-          : '<div style="padding:20px;color:var(--g4)">Нет похожих товаров</div>';
+          : sampleProducts.filter(sp => sp.category_slug === cat).map(prodCardHTML).join('');
         // reset tab
         pdTab('specs', document.querySelector('.pd-tabs .tab'));
       } catch (e) {
         document.getElementById('pdMainImg').innerHTML = '<div style="padding:20px;color:var(--g4)">Ошибка загрузки</div>';
+        document.getElementById('relatedGrid').innerHTML = sampleProducts.map(prodCardHTML).join('');
       }
     }
     function selectThumb(el) {

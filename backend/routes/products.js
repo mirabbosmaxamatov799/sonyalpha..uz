@@ -2,6 +2,22 @@ const express = require('express');
 const router = express.Router();
 const { getDb, saveDb } = require('../db/database');
 const auth = require('../middleware/auth');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
+// Ensure uploads/products directory exists
+const uploadDir = path.join(__dirname, '..', 'uploads', 'products');
+fs.mkdirSync(uploadDir, { recursive: true });
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, uploadDir),
+  filename: (req, file, cb) => {
+    const safeName = file.originalname.replace(/\s+/g, '_');
+    cb(null, Date.now() + '-' + safeName);
+  }
+});
+const upload = multer({ storage });
 
 // GET /api/products — all products with filters
 router.get('/', async (req, res) => {
@@ -138,6 +154,32 @@ router.delete('/:id', auth, async (req, res) => {
     db.run('UPDATE products SET is_active=0 WHERE id=?', [req.params.id]);
     saveDb();
     res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/products/:id/image — upload an image for a product (admin)
+router.post('/:id/image', auth, upload.single('image'), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+    const db = await getDb();
+    const id = req.params.id;
+
+    const stmt = db.prepare('SELECT images FROM products WHERE id=?');
+    stmt.bind([id]);
+    if (!stmt.step()) { stmt.free(); return res.status(404).json({ error: 'Product not found' }); }
+    const row = stmt.getAsObject();
+    stmt.free();
+
+    const images = JSON.parse(row.images || '[]');
+    const url = `/uploads/products/${req.file.filename}`;
+    images.push(url);
+
+    db.run('UPDATE products SET images=? WHERE id=?', [JSON.stringify(images), id]);
+    saveDb();
+
+    res.json({ success: true, url, images });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
