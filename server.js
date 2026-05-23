@@ -20,15 +20,19 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date().t
 
 // Serve frontend in production
 app.use(express.static(path.join(__dirname, 'frontend')));
-app.get('/{*path}', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ SonyAlpha server running on http://localhost:${PORT}`);
-  console.log(`   API: http://localhost:${PORT}/api/products`);
-  console.log(`   Admin login: admin / admin123`);
-});
+if (process.env.VERCEL) {
+  module.exports = app;
+} else {
+  app.listen(PORT, () => {
+    console.log(`✅ SonyAlpha server running on http://localhost:${PORT}`);
+    console.log(`   API: http://localhost:${PORT}/api/products`);
+    console.log(`   Admin login: admin / admin123`);
+  });
+}
 
 
 
