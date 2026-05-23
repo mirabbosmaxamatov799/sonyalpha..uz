@@ -1,0 +1,3858 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sony Alpha — Официальный магазин | Ташкент</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f4f0;
+      --red: #cc1e1e;
+      --red-dark: #991515;
+      --g1: #1a1a1a;
+      --g2: #242424;
+      --g3: #3a3a3a;
+      --g4: #666;
+      --g5: #999;
+      --g6: #ccc;
+      --accent: #e8d5b7;
+      --fd: 'Bebas Neue', sans-serif;
+      --fb: 'DM Sans', sans-serif;
+      --fm: 'DM Mono', monospace;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--fb);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--black)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--red);
+      border-radius: 2px
+    }
+
+    /* cursor */
+    #cur {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform .15s, background .2s
+    }
+
+    #cur-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(204, 30, 30, .5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: width .3s, height .3s;
+      transform: translate(-50%, -50%)
+    }
+
+    /* pages */
+    .page {
+      display: none;
+      min-height: 100vh
+    }
+
+    .page.active {
+      display: block
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(10, 10, 10, .94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--g1)
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      cursor: none
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--red);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fd);
+      font-size: 17px;
+      color: #fff
+    }
+
+    .logo-text {
+      font-family: var(--fd);
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: var(--white)
+    }
+
+    .logo-text span {
+      color: var(--red)
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px
+    }
+
+    nav a {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--g5);
+      text-decoration: none;
+      cursor: none;
+      transition: color .2s;
+      position: relative;
+      padding-bottom: 2px
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform .25s
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--white)
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      transform: scaleX(1)
+    }
+
+    .h-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .btn-cart {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      background: var(--red);
+      border: none;
+      border-radius: 3px;
+      color: #fff;
+      font-family: var(--fb);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: none;
+      transition: background .2s
+    }
+
+    .btn-cart:hover {
+      background: var(--red-dark)
+    }
+
+    .cart-count {
+      background: #fff;
+      color: var(--red);
+      border-radius: 50%;
+      width: 17px;
+      height: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600
+    }
+
+    .btn-icon {
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--g2);
+      border-radius: 3px;
+      color: var(--g5);
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .2s, color .2s
+    }
+
+    .btn-icon:hover {
+      border-color: var(--white);
+      color: var(--white)
+    }
+
+    /* ── SHARED ── */
+    .btn-primary {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      font-family: var(--fb);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: none;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      border-radius: 2px
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px)
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 12px 28px;
+      background: transparent;
+      color: var(--g5);
+      border: 1px solid var(--g3);
+      font-family: var(--fb);
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: none;
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+      border-radius: 2px
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--white);
+      color: var(--white)
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-transform: uppercase;
+      cursor: none;
+      background: none;
+      border: none;
+      transition: color .2s;
+      margin-bottom: 28px
+    }
+
+    .back-btn:hover {
+      color: var(--white)
+    }
+
+    .eyebrow {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .sec-title {
+      font-family: var(--fd);
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: .95;
+      letter-spacing: 2px
+    }
+
+    .sec-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 52px
+    }
+
+    .see-all {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-decoration: none;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: none;
+      transition: color .2s
+    }
+
+    .see-all:hover {
+      color: var(--white)
+    }
+
+    /* loading */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      gap: 12px;
+      color: var(--g4);
+      font-family: var(--fm);
+      font-size: 12px;
+      letter-spacing: 2px
+    }
+
+    .spin {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--g2);
+      border-top-color: var(--red);
+      border-radius: 50%;
+      animation: spin .8s linear infinite
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      gap: 12px;
+      color: var(--g4);
+      font-family: var(--fm);
+      font-size: 12px;
+      letter-spacing: 1px
+    }
+
+    /* toast */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: var(--g1);
+      border: 1px solid var(--g2);
+      border-left: 3px solid var(--red);
+      color: var(--white);
+      font-size: 13px;
+      transform: translateX(120%);
+      transition: transform .35s ease;
+      max-width: 340px;
+      border-radius: 2px
+    }
+
+    .toast.show {
+      transform: translateX(0)
+    }
+
+    /* ═══════════════════════════════
+   HOME
+═══════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(204, 30, 30, .07), transparent 60%);
+      pointer-events: none
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 56px 80px 80px
+    }
+
+    .hero-eyebrow {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--red)
+    }
+
+    .hero-title {
+      font-family: var(--fd);
+      font-size: clamp(68px, 9vw, 124px);
+      line-height: .9;
+      letter-spacing: 2px;
+      margin-bottom: 26px
+    }
+
+    .hero-title .r {
+      color: var(--red)
+    }
+
+    .hero-title .g {
+      color: var(--g3);
+      font-size: .5em;
+      letter-spacing: 8px
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--g5);
+      max-width: 360px;
+      line-height: 1.85;
+      margin-bottom: 40px
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--g1)
+    }
+
+    .stat-num {
+      font-family: var(--fd);
+      font-size: 38px;
+      line-height: 1;
+      letter-spacing: 2px
+    }
+
+    .stat-num span {
+      color: var(--red)
+    }
+
+    .stat-lbl {
+      font-size: 10px;
+      color: var(--g4);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 4px
+    }
+
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden
+    }
+
+    .hero-ring {
+      width: 460px;
+      height: 460px;
+      border: 1px solid var(--g1);
+      border-radius: 50%;
+      position: absolute;
+      animation: rotRing 20s linear infinite
+    }
+
+    .hero-ring::before {
+      content: '';
+      position: absolute;
+      inset: 28px;
+      border: 1px dashed var(--g2);
+      border-radius: 50%;
+      animation: rotRing 12s linear infinite reverse
+    }
+
+    @keyframes rotRing {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .hero-cam {
+      position: relative;
+      z-index: 2;
+      animation: floatCam 4s ease-in-out infinite
+    }
+
+    @keyframes floatCam {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-14px)
+      }
+    }
+
+    .hero-lbl {
+      position: absolute;
+      font-family: var(--fm);
+      font-size: 10px;
+      color: var(--g4);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 3
+    }
+
+    .hero-lbl::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--g4)
+    }
+
+    .hl1 {
+      top: 34%;
+      right: 56px
+    }
+
+    .hl2 {
+      bottom: 38%;
+      left: 56px
+    }
+
+    .hl3 {
+      top: 57%;
+      right: 50px
+    }
+
+    /* marquee */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--g1);
+      border-bottom: 1px solid var(--g1);
+      background: var(--g1);
+      padding: 13px 0
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 22s linear infinite
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    .m-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 36px;
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-transform: uppercase;
+      white-space: nowrap
+    }
+
+    .m-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    /* home sections */
+    .home-section {
+      padding: 90px 80px
+    }
+
+    .home-section.no-top {
+      padding-top: 0
+    }
+
+    /* cat grid */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 265px 265px;
+      gap: 2px
+    }
+
+    .cat-card {
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+      background: var(--g1)
+    }
+
+    .cat-card:first-child {
+      grid-row: span 2
+    }
+
+    .cat-card-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .6s
+    }
+
+    .cat-card:hover .cat-card-bg {
+      transform: scale(1.06)
+    }
+
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 26px;
+      background: linear-gradient(to top, rgba(0, 0, 0, .82), transparent 52%);
+      transition: background .4s
+    }
+
+    .cat-card:hover .cat-overlay {
+      background: linear-gradient(to top, rgba(180, 20, 20, .6), transparent 62%)
+    }
+
+    .cat-num {
+      font-family: var(--fm);
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      margin-bottom: 5px
+    }
+
+    .cat-name {
+      font-family: var(--fd);
+      font-size: 24px;
+      letter-spacing: 1px;
+      margin-bottom: 2px
+    }
+
+    .cat-card:first-child .cat-name {
+      font-size: 38px
+    }
+
+    .cat-sub {
+      font-size: 11px;
+      color: var(--g5)
+    }
+
+    .cat-arrow {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--g4);
+      transform: rotate(45deg);
+      transition: all .3s
+    }
+
+    .cat-card:hover .cat-arrow {
+      border-color: #fff;
+      color: #fff;
+      background: var(--red)
+    }
+
+    /* product grid */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px
+    }
+
+    .prod-grid.col3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .prod-card {
+      background: var(--g1);
+      cursor: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s;
+      display: flex;
+      flex-direction: column
+    }
+
+    .prod-card:hover {
+      transform: translateY(-4px);
+      z-index: 2;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, .4)
+    }
+
+    .prod-img {
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--g2);
+      position: relative;
+      overflow: hidden
+    }
+
+    .prod-img svg {
+      transition: transform .45s
+    }
+
+    .prod-card:hover .prod-img svg {
+      transform: scale(1.08)
+    }
+
+    .prod-desc {
+      font-family: var(--fm);
+      font-size: 12px;
+      color: var(--g4);
+      margin: 8px 0;
+      min-height: 34px;
+      overflow: hidden;
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 3px 9px;
+      font-family: var(--fm);
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 2px
+    }
+
+    .badge-top {
+      background: var(--accent);
+      color: var(--black)
+    }
+
+    .badge-new {
+      background: var(--red);
+      color: #fff
+    }
+
+    .prod-body {
+      padding: 18px 18px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column
+    }
+
+    .prod-name {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 4px
+    }
+
+    .prod-model {
+      font-family: var(--fm);
+      font-size: 9px;
+      color: var(--g4);
+      letter-spacing: 1px;
+      margin-bottom: 6px
+    }
+
+    .prod-cat {
+      font-size: 10px;
+      color: var(--g5);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .prod-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .catalog-group {
+      margin-bottom: 26px;
+    }
+
+    .catalog-group-title {
+      font-family: var(--fd);
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin: 18px 0 12px;
+    }
+
+    .prod-price-lbl {
+      font-size: 9px;
+      color: var(--g5);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 3px
+    }
+
+    .prod-price {
+      font-family: var(--fd);
+      font-size: 20px;
+      letter-spacing: 1px
+    }
+
+    .prod-old-price {
+      font-family: var(--fm);
+      font-size: 10px;
+      color: var(--g4);
+      text-decoration: line-through;
+      margin-bottom: 2px
+    }
+
+    .btn-add {
+      width: 34px;
+      height: 34px;
+      background: transparent;
+      border: 1px solid var(--g3);
+      border-radius: 2px;
+      color: var(--g4);
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      flex-shrink: 0
+    }
+
+    .btn-add:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff
+    }
+
+    .btn-add.added {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff
+    }
+
+    /* tabs */
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--g1);
+      margin-bottom: 40px
+    }
+
+    .tab {
+      padding: 12px 24px;
+      background: transparent;
+      border: none;
+      color: var(--g4);
+      font-family: var(--fb);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: none;
+      position: relative;
+      transition: color .2s
+    }
+
+    .tab.active {
+      color: var(--white)
+    }
+
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--red)
+    }
+
+    .tab:hover {
+      color: var(--g6)
+    }
+
+    /* info cards */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 0 80px 90px
+    }
+
+    .info-card {
+      background: var(--g1);
+      padding: 34px;
+      transition: background .3s
+    }
+
+    .info-card:hover {
+      background: var(--g2)
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--g3);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      color: var(--red)
+    }
+
+    .info-title {
+      font-family: var(--fd);
+      font-size: 22px;
+      letter-spacing: 1px;
+      margin-bottom: 8px
+    }
+
+    .info-desc {
+      font-size: 12px;
+      color: var(--g5);
+      line-height: 1.85
+    }
+
+    /* news preview */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px
+    }
+
+    .news-row {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      background: var(--g1);
+      cursor: none;
+      overflow: hidden;
+      transition: background .3s;
+      min-height: 180px
+    }
+
+    .news-row:hover {
+      background: var(--g2)
+    }
+
+    .news-img {
+      background: var(--g2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative
+    }
+
+    .news-img-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .5s
+    }
+
+    .news-row:hover .news-img-inner {
+      transform: scale(1.06)
+    }
+
+    .news-body {
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center
+    }
+
+    .news-date {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--red);
+      margin-bottom: 10px
+    }
+
+    .news-title {
+      font-family: var(--fd);
+      font-size: 26px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      line-height: 1.1
+    }
+
+    .news-excerpt {
+      font-size: 12px;
+      color: var(--g5);
+      line-height: 1.8;
+      max-width: 540px
+    }
+
+    .news-more {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-transform: uppercase;
+      transition: color .2s
+    }
+
+    .news-row:hover .news-more {
+      color: var(--red)
+    }
+
+    /* footer */
+    footer {
+      border-top: 1px solid var(--g1);
+      padding: 56px 80px 36px
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px
+    }
+
+    .footer-brand-desc {
+      font-size: 12px;
+      color: var(--g5);
+      line-height: 1.85;
+      max-width: 260px;
+      margin-top: 14px
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 8px;
+      margin-top: 18px
+    }
+
+    .social-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--g2);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--g4);
+      text-decoration: none;
+      transition: all .2s;
+      font-family: var(--fm);
+      font-size: 9px;
+      cursor: none
+    }
+
+    .social-btn:hover {
+      border-color: var(--red);
+      color: var(--red)
+    }
+
+    .footer-col h4 {
+      font-family: var(--fd);
+      font-size: 16px;
+      letter-spacing: 1px;
+      margin-bottom: 16px
+    }
+
+    .footer-col ul {
+      list-style: none
+    }
+
+    .footer-col li {
+      margin-bottom: 8px
+    }
+
+    .footer-col a {
+      font-size: 12px;
+      color: var(--g5);
+      text-decoration: none;
+      cursor: none;
+      transition: color .2s
+    }
+
+    .footer-col a:hover {
+      color: var(--white)
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 26px;
+      border-top: 1px solid var(--g1)
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--g4)
+    }
+
+    .footer-loc {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--fm);
+      font-size: 11px;
+      color: var(--g4)
+    }
+
+    .loc-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .3
+      }
+    }
+
+    /* ═══════════════════════════════
+   CATALOG PAGE
+═══════════════════════════════ */
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
+      padding-top: 64px;
+      min-height: 100vh
+    }
+
+    .sidebar {
+      background: var(--g1);
+      padding: 40px 28px;
+      border-right: 1px solid var(--g2);
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto
+    }
+
+    .sidebar-title {
+      font-family: var(--fd);
+      font-size: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+      color: var(--white)
+    }
+
+    .sidebar-section {
+      margin-bottom: 28px
+    }
+
+    .sidebar-label {
+      font-family: var(--fm);
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-transform: uppercase;
+      margin-bottom: 12px
+    }
+
+    .filter-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 8px 12px;
+      background: transparent;
+      border: none;
+      color: var(--g5);
+      font-family: var(--fb);
+      font-size: 12px;
+      cursor: none;
+      transition: color .2s;
+      border-radius: 2px
+    }
+
+    .filter-btn:hover {
+      color: var(--white);
+      background: var(--g2)
+    }
+
+    .filter-btn.active {
+      color: var(--white);
+      background: var(--red)
+    }
+
+    .sort-select {
+      width: 100%;
+      padding: 9px 12px;
+      background: var(--g2);
+      border: 1px solid var(--g3);
+      color: var(--white);
+      font-family: var(--fb);
+      font-size: 12px;
+      cursor: none;
+      border-radius: 2px;
+      outline: none
+    }
+
+    .catalog-main {
+      padding: 40px
+    }
+
+    .catalog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px
+    }
+
+    .catalog-view-toggle {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--g4);
+    }
+    .catalog-view-toggle button {
+      background: transparent;
+      border: 1px solid var(--g3);
+      color: var(--white);
+      padding: 6px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: var(--fb);
+    }
+    .catalog-view-toggle button.active { background: var(--red); border-color: var(--red); }
+
+    .prod-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:6px; }
+
+    .catalog-title {
+      font-family: var(--fd);
+      font-size: clamp(32px, 4vw, 56px);
+      letter-spacing: 2px;
+      line-height: .95
+    }
+
+    .catalog-count {
+      font-family: var(--fm);
+      font-size: 11px;
+      color: var(--g4);
+      letter-spacing: 1px
+    }
+
+    /* ═══════════════════════════════
+   PRODUCT DETAIL PAGE
+═══════════════════════════════ */
+    .pd-wrap {
+      padding-top: 64px
+    }
+
+    .pd-hero {
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      min-height: calc(100vh - 64px);
+      border-bottom: 1px solid var(--g1)
+    }
+
+    .pd-gallery {
+      background: var(--g1);
+      display: flex;
+      flex-direction: column;
+      padding: 40px
+    }
+
+    .pd-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--g2);
+      border-radius: 3px;
+      min-height: 380px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .pd-main svg {
+      transition: transform .5s
+    }
+
+    .pd-main:hover svg {
+      transform: scale(1.06)
+    }
+
+    .pd-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 5px 12px;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 2px
+    }
+
+    .pd-thumbs {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px
+    }
+
+    .pd-thumb {
+      width: 68px;
+      height: 56px;
+      background: var(--g2);
+      border: 1px solid var(--g3);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      transition: border-color .2s;
+      overflow: hidden
+    }
+
+    .pd-thumb.active {
+      border-color: var(--red)
+    }
+
+    .pd-thumb:hover {
+      border-color: var(--g5)
+    }
+
+    .pd-panel {
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+      border-left: 1px solid var(--g2);
+      overflow-y: auto
+    }
+
+    .pd-eyebrow {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .pd-name {
+      font-family: var(--fd);
+      font-size: clamp(28px, 3vw, 46px);
+      line-height: .95;
+      letter-spacing: 1px;
+      margin-bottom: 6px
+    }
+
+    .pd-model {
+      font-family: var(--fm);
+      font-size: 11px;
+      color: var(--g4);
+      letter-spacing: 1px;
+      margin-bottom: 24px
+    }
+
+    .pd-price-wrap {
+      margin-bottom: 24px;
+      padding: 20px;
+      background: var(--g1);
+      border-radius: 3px
+    }
+
+    .pd-price-lbl {
+      font-size: 10px;
+      color: var(--g5);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px
+    }
+
+    .pd-price {
+      font-family: var(--fd);
+      font-size: 38px;
+      letter-spacing: 1px;
+      line-height: 1
+    }
+
+    .pd-price small {
+      font-size: 18px;
+      color: var(--g4)
+    }
+
+    .pd-old-price {
+      font-family: var(--fm);
+      font-size: 12px;
+      color: var(--g4);
+      text-decoration: line-through;
+      margin-top: 4px
+    }
+
+    .pd-stock {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 22px
+    }
+
+    .pd-stock-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%
+    }
+
+    .stock-in {
+      color: #4ade80
+    }
+
+    .stock-in .pd-stock-dot {
+      background: #4ade80
+    }
+
+    .stock-low {
+      color: #fb923c
+    }
+
+    .stock-low .pd-stock-dot {
+      background: #fb923c
+    }
+
+    .stock-out {
+      color: var(--g4)
+    }
+
+    .stock-out .pd-stock-dot {
+      background: var(--g4)
+    }
+
+    .pd-qty {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 16px;
+      border: 1px solid var(--g3);
+      border-radius: 2px;
+      width: fit-content
+    }
+
+    .qty-btn {
+      width: 38px;
+      height: 38px;
+      background: transparent;
+      border: none;
+      color: var(--white);
+      font-size: 18px;
+      cursor: none;
+      transition: background .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .qty-btn:hover {
+      background: var(--g2)
+    }
+
+    .qty-num {
+      width: 48px;
+      text-align: center;
+      font-family: var(--fd);
+      font-size: 20px;
+      border: none;
+      background: transparent;
+      color: var(--white)
+    }
+
+    .pd-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px
+    }
+
+    .btn-buy {
+      padding: 14px 24px;
+      background: var(--red);
+      border: none;
+      color: #fff;
+      font-family: var(--fb);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: none;
+      transition: background .2s;
+      border-radius: 2px
+    }
+
+    .btn-buy:hover {
+      background: var(--red-dark)
+    }
+
+    .btn-add-cart {
+      padding: 14px 24px;
+      background: transparent;
+      border: 1px solid var(--g3);
+      color: var(--white);
+      font-family: var(--fb);
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: none;
+      transition: all .2s;
+      border-radius: 2px
+    }
+
+    .btn-add-cart:hover {
+      border-color: var(--white)
+    }
+
+    .pd-desc {
+      font-size: 13px;
+      color: var(--g5);
+      line-height: 1.9;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--g2)
+    }
+
+    .pd-info-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--g1);
+      font-size: 12px;
+      color: var(--g5)
+    }
+
+    .pd-info-row svg {
+      color: var(--red);
+      flex-shrink: 0
+    }
+
+    .pd-info-row strong {
+      color: var(--white)
+    }
+
+    /* specs & related tabs */
+    .pd-tabs-section {
+      padding: 0 80px 80px
+    }
+
+    .pd-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--g1);
+      margin-bottom: 36px
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--g1)
+    }
+
+    .spec-row:hover {
+      background: var(--g2)
+    }
+
+    .spec-key {
+      font-family: var(--fm);
+      font-size: 11px;
+      color: var(--g4);
+      letter-spacing: .5px
+    }
+
+    .spec-val {
+      font-size: 12px;
+      color: var(--white);
+      font-weight: 500;
+      text-align: right;
+      max-width: 55%
+    }
+
+    /* related */
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px
+    }
+
+    /* ═══════════════════════════════
+   NEWS PAGES
+═══════════════════════════════ */
+    .news-page {
+      padding: 100px 80px 80px
+    }
+
+    .news-page-title {
+      font-family: var(--fd);
+      font-size: clamp(48px, 6vw, 90px);
+      letter-spacing: 2px;
+      margin-bottom: 52px;
+      line-height: .95
+    }
+
+    .article-page {
+      padding-top: 64px
+    }
+
+    .article-hero {
+      width: 100%;
+      height: 56vh;
+      overflow: hidden;
+      position: relative
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px
+    }
+
+    .article-content {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 56px 32px 100px
+    }
+
+    .article-date {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--red);
+      margin-bottom: 14px
+    }
+
+    .article-title {
+      font-family: var(--fd);
+      font-size: clamp(38px, 5vw, 68px);
+      line-height: .95;
+      letter-spacing: 2px;
+      margin-bottom: 28px
+    }
+
+    .article-body {
+      font-size: 15px;
+      color: var(--g6);
+      line-height: 1.95
+    }
+
+    .article-body p {
+      margin-bottom: 18px
+    }
+
+    .article-body h3 {
+      font-family: var(--fd);
+      font-size: 28px;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin: 32px 0 12px
+    }
+
+    .article-body ul {
+      margin: 0 0 18px 20px;
+      color: var(--g6)
+    }
+
+    .article-body ul li {
+      margin-bottom: 7px
+    }
+
+    /* ═══════════════════════════════
+   CART MODAL
+═══════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .7);
+      z-index: 500;
+      display: none;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding-top: 64px
+    }
+
+    .modal-overlay.open {
+      display: flex
+    }
+
+    .cart-modal {
+      background: var(--black);
+      border-left: 1px solid var(--g2);
+      width: 420px;
+      height: calc(100vh - 64px);
+      display: flex;
+      flex-direction: column;
+      animation: slideIn .3s ease
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%)
+      }
+
+      to {
+        transform: translateX(0)
+      }
+    }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      border-bottom: 1px solid var(--g1)
+    }
+
+    .cart-header-title {
+      font-family: var(--fd);
+      font-size: 24px;
+      letter-spacing: 2px
+    }
+
+    .cart-close {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: 1px solid var(--g3);
+      border-radius: 2px;
+      color: var(--g5);
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s
+    }
+
+    .cart-close:hover {
+      border-color: var(--white);
+      color: var(--white)
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      background: var(--g1);
+      margin-bottom: 2px;
+      border-radius: 2px
+    }
+
+    .cart-item-img {
+      width: 64px;
+      height: 52px;
+      background: var(--g2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px
+    }
+
+    .cart-item-name {
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 3px;
+      line-height: 1.4
+    }
+
+    .cart-item-price {
+      font-family: var(--fd);
+      font-size: 16px;
+      color: var(--red)
+    }
+
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--g3);
+      border-radius: 2px
+    }
+
+    .cart-qty-btn {
+      width: 28px;
+      height: 28px;
+      background: transparent;
+      border: none;
+      color: var(--white);
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: background .2s
+    }
+
+    .cart-qty-btn:hover {
+      background: var(--g2)
+    }
+
+    .cart-qty-num {
+      width: 32px;
+      text-align: center;
+      font-size: 13px
+    }
+
+    .cart-item-remove {
+      width: 28px;
+      height: 28px;
+      background: transparent;
+      border: none;
+      color: var(--g4);
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color .2s
+    }
+
+    .cart-item-remove:hover {
+      color: var(--red)
+    }
+
+    .cart-footer {
+      padding: 20px;
+      border-top: 1px solid var(--g1)
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px
+    }
+
+    .cart-total-lbl {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-transform: uppercase
+    }
+
+    .cart-total-val {
+      font-family: var(--fd);
+      font-size: 28px;
+      letter-spacing: 1px
+    }
+
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 14px;
+      color: var(--g4);
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 1px
+    }
+
+    /* ═══════════════════════════════
+   ORDER MODAL
+═══════════════════════════════ */
+    .order-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .8);
+      z-index: 600;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px
+    }
+
+    .order-modal-overlay.open {
+      display: flex
+    }
+
+    .order-modal {
+      background: var(--black);
+      border: 1px solid var(--g2);
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 3px;
+      animation: fadeUp .3s ease
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .order-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      border-bottom: 1px solid var(--g1)
+    }
+
+    .order-modal-title {
+      font-family: var(--fd);
+      font-size: 26px;
+      letter-spacing: 2px
+    }
+
+    .order-body {
+      padding: 24px
+    }
+
+    .form-group {
+      margin-bottom: 18px
+    }
+
+    .form-label {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 7px
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 11px 14px;
+      background: var(--g1);
+      border: 1px solid var(--g3);
+      color: var(--white);
+      font-family: var(--fb);
+      font-size: 13px;
+      outline: none;
+      border-radius: 2px;
+      transition: border-color .2s
+    }
+
+    .form-input:focus {
+      border-color: var(--red)
+    }
+
+    .form-input::placeholder {
+      color: var(--g4)
+    }
+
+    .form-select {
+      width: 100%;
+      padding: 11px 14px;
+      background: var(--g1);
+      border: 1px solid var(--g3);
+      color: var(--white);
+      font-family: var(--fb);
+      font-size: 13px;
+      outline: none;
+      border-radius: 2px;
+      cursor: none
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
+    }
+
+    .order-summary {
+      background: var(--g1);
+      padding: 16px;
+      border-radius: 2px;
+      margin-bottom: 18px
+    }
+
+    .order-summary-title {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-transform: uppercase;
+      margin-bottom: 12px
+    }
+
+    .order-summary-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: var(--g5)
+    }
+
+    .order-summary-total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      margin-top: 10px;
+      border-top: 1px solid var(--g2);
+      font-weight: 500;
+      font-size: 13px
+    }
+
+    /* ═══════════════════════════════
+   ADMIN PAGE
+═══════════════════════════════ */
+    .admin-page {
+      padding-top: 64px;
+      min-height: 100vh
+    }
+
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr
+    }
+
+    .admin-nav {
+      background: var(--g1);
+      min-height: calc(100vh - 64px);
+      padding: 28px 0;
+      border-right: 1px solid var(--g2);
+      position: sticky;
+      top: 64px
+    }
+
+    .admin-nav-title {
+      font-family: var(--fm);
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--g4);
+      text-transform: uppercase;
+      padding: 0 20px;
+      margin-bottom: 12px
+    }
+
+    .admin-nav-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px 20px;
+      background: transparent;
+      border: none;
+      color: var(--g5);
+      font-family: var(--fb);
+      font-size: 12px;
+      cursor: none;
+      transition: all .2s
+    }
+
+    .admin-nav-btn:hover {
+      color: var(--white);
+      background: var(--g2)
+    }
+
+    .admin-nav-btn.active {
+      color: var(--white);
+      background: var(--red)
+    }
+
+    .admin-content {
+      padding: 36px
+    }
+
+    .admin-section {
+      display: none
+    }
+
+    .admin-section.active {
+      display: block
+    }
+
+    .admin-title {
+      font-family: var(--fd);
+      font-size: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 28px
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      margin-bottom: 36px
+    }
+
+    .stat-card {
+      background: var(--g1);
+      padding: 24px;
+      border-top: 2px solid transparent;
+      transition: border-color .3s
+    }
+
+    .stat-card:hover {
+      border-color: var(--red)
+    }
+
+    .stat-card-num {
+      font-family: var(--fd);
+      font-size: 40px;
+      letter-spacing: 1px;
+      color: var(--white)
+    }
+
+    .stat-card-lbl {
+      font-family: var(--fm);
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-transform: uppercase;
+      margin-top: 4px
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    .admin-table th {
+      font-family: var(--fm);
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--g4);
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--g2);
+      background: var(--g1)
+    }
+
+    .admin-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--g1);
+      font-size: 12px;
+      color: var(--g6);
+      vertical-align: middle
+    }
+
+    .admin-table tr:hover td {
+      background: var(--g1)
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-family: var(--fm);
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase
+    }
+
+    .status-new {
+      background: rgba(251, 146, 60, .15);
+      color: #fb923c
+    }
+
+    .status-confirmed {
+      background: rgba(74, 222, 128, .15);
+      color: #4ade80
+    }
+
+    .status-processing {
+      background: rgba(96, 165, 250, .15);
+      color: #60a5fa
+    }
+
+    .status-shipped {
+      background: rgba(167, 139, 250, .15);
+      color: #a78bfa
+    }
+
+    .status-delivered {
+      background: rgba(74, 222, 128, .2);
+      color: #4ade80
+    }
+
+    .status-cancelled {
+      background: rgba(239, 68, 68, .15);
+      color: #ef4444
+    }
+
+    .admin-login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 64px)
+    }
+
+    .admin-login-box {
+      background: var(--g1);
+      padding: 48px;
+      width: 100%;
+      max-width: 380px;
+      border: 1px solid var(--g2);
+      border-radius: 3px
+    }
+
+    .admin-login-title {
+      font-family: var(--fd);
+      font-size: 36px;
+      letter-spacing: 2px;
+      margin-bottom: 28px
+    }
+
+    .btn-change-status {
+      padding: 4px 10px;
+      background: transparent;
+      border: 1px solid var(--g3);
+      color: var(--g5);
+      font-family: var(--fm);
+      font-size: 9px;
+      letter-spacing: 1px;
+      cursor: none;
+      border-radius: 2px;
+      transition: all .2s
+    }
+
+    .btn-change-status:hover {
+      border-color: var(--red);
+      color: var(--red)
+    }
+
+    /* fade-in */
+    .fi {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s, transform .65s
+    }
+
+    .fi.v {
+      opacity: 1;
+      transform: none
+    }
+
+    /* responsive basics */
+    @media(max-width:1024px) {
+      header {
+        padding: 0 20px
+      }
+
+      nav {
+        display: none
+      }
+
+      .hero {
+        grid-template-columns: 1fr
+      }
+
+      .hero-right {
+        display: none
+      }
+
+      .hero-left {
+        padding: 60px 24px
+      }
+
+      .home-section {
+        padding: 60px 24px
+      }
+
+      .cat-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto
+      }
+
+      .cat-card:first-child {
+        grid-row: span 1;
+        grid-column: span 2
+      }
+
+      .prod-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        margin: 0 24px 60px
+      }
+
+      .catalog-layout {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        display: none
+      }
+
+      .catalog-main {
+        padding: 24px
+      }
+
+      .pd-hero {
+        grid-template-columns: 1fr
+      }
+
+      .pd-tabs-section {
+        padding: 0 24px 60px
+      }
+
+      .related-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .news-page {
+        padding: 80px 24px 60px
+      }
+
+      footer {
+        padding: 40px 24px 28px
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .admin-layout {
+        grid-template-columns: 1fr
+      }
+
+      .admin-nav {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="cur"></div>
+  <div id="cur-ring"></div>
+
+  <!-- ══════ HEADER ══════ -->
+  <header>
+    <a class="logo" onclick="go('home')">
+      <div class="logo-icon">α</div>
+      <span class="logo-text">SONY<span>ALPHA</span></span>
+    </a>
+    <nav id="mainNav">
+      <a onclick="go('catalog','mirrorless')" id="nav-mirrorless">Беззеркальные</a>
+      <a onclick="go('catalog','compact')" id="nav-compact">Компактные</a>
+      <a onclick="go('catalog','lenses')" id="nav-lenses">Объективы</a>
+      <a onclick="go('catalog','video')" id="nav-video">Видеокамеры</a>
+      <a onclick="go('catalog','accessories')" id="nav-accessories">Аксессуары</a>
+      <a onclick="go('news')" id="nav-news">Новости</a>
+      <a onclick="go('contact')" id="nav-contact">Контакты</a>
+    </nav>
+    <div class="h-actions">
+      <button class="btn-icon" onclick="go('admin')">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+        </svg>
+      </button>
+      <button class="btn-cart" onclick="openCart()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        Корзина <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══════ TOAST ══════ -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ══════ CART MODAL ══════ -->
+  <div class="modal-overlay" id="cartOverlay" onclick="closeCart(event)">
+    <div class="cart-modal">
+      <div class="cart-header">
+        <span class="cart-header-title">КОРЗИНА</span>
+        <button class="cart-close" onclick="closeCart()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-footer" id="cartFooter"></div>
+    </div>
+  </div>
+
+  <!-- ══════ ORDER MODAL ══════ -->
+  <div class="order-modal-overlay" id="orderOverlay" onclick="closeOrder(event)">
+    <div class="order-modal" onclick="event.stopPropagation()">
+      <div class="order-modal-header">
+        <span class="order-modal-title">ОФОРМЛЕНИЕ ЗАКАЗА</span>
+        <button class="cart-close" onclick="closeOrder()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="order-body">
+        <div id="orderSummary"></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Имя *</label>
+            <input class="form-input" id="oName" placeholder="Иван Иванов">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон *</label>
+            <input class="form-input" id="oPhone" placeholder="+998 90 123 45 67" type="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" id="oEmail" placeholder="email@example.com" type="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Способ получения</label>
+          <select class="form-select" id="oDelivery" onchange="toggleAddress()">
+            <option value="pickup">Самовывоз из шоурума (Навои, 14)</option>
+            <option value="delivery">Доставка по Ташкенту</option>
+          </select>
+        </div>
+        <div class="form-group" id="addressGroup" style="display:none">
+          <label class="form-label">Адрес доставки</label>
+          <input class="form-input" id="oAddress" placeholder="Улица, дом, квартира">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Комментарий</label>
+          <input class="form-input" id="oNotes" placeholder="Любые пожелания...">
+        </div>
+        <button class="btn-buy" style="width:100%" onclick="submitOrder()">Подтвердить заказ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ PAGE: HOME ══════ -->
+  <div class="page active" id="page-home">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow fi">Официальный магазин Sony — Ташкент</div>
+        <h1 class="hero-title fi">CAPTURE<br><span class="r">EVERY</span><br><span class="g">MOMENT</span></h1>
+        <p class="hero-desc fi">Беззеркальные камеры Sony Alpha, объективы и аксессуары с официальной гарантией.
+          Единственный шоурум в Ташкенте.</p>
+        <div class="hero-btns fi">
+          <a class="btn-primary" onclick="go('catalog')">Каталог</a>
+          <a class="btn-ghost" onclick="go('contact')">Шоурум</a>
+        </div>
+        <div class="hero-stats fi">
+          <div>
+            <div class="stat-num" id="heroStatProd">—</div>
+            <div class="stat-lbl">Товаров</div>
+          </div>
+          <div>
+            <div class="stat-num">2<span>г</span></div>
+            <div class="stat-lbl">Гарантия</div>
+          </div>
+          <div>
+            <div class="stat-num">24<span>ч</span></div>
+            <div class="stat-lbl">Доставка</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-ring"></div>
+        <svg class="hero-cam" width="320" height="256" viewBox="0 0 320 256" fill="none">
+          <rect x="34" y="68" width="252" height="148" rx="16" fill="#1a1a1a" stroke="#333" stroke-width="1.5" />
+          <rect x="34" y="86" width="44" height="130" rx="10" fill="#161616" stroke="#2a2a2a" />
+          <rect x="52" y="50" width="216" height="26" rx="6" fill="#1f1f1f" stroke="#333" />
+          <circle cx="248" cy="62" r="18" fill="#141414" stroke="#333" stroke-width="1.5" />
+          <circle cx="248" cy="62" r="6" fill="#cc1e1e" />
+          <circle cx="178" cy="148" r="68" fill="#111" stroke="#2a2a2a" stroke-width="2" />
+          <circle cx="178" cy="148" r="56" fill="#0d0d0d" stroke="#222" />
+          <circle cx="178" cy="148" r="42" fill="#060d1a" stroke="#152030" />
+          <circle cx="178" cy="148" r="26" fill="#040a12" />
+          <ellipse cx="166" cy="136" rx="9" ry="5" fill="rgba(100,150,255,.08)" transform="rotate(-20 166 136)" />
+          <circle cx="216" cy="124" r="4" fill="#cc1e1e" />
+          <rect x="90" y="168" width="74" height="44" rx="3" fill="#0d1117" stroke="#1a2030" />
+          <text x="127" y="193" text-anchor="middle" font-family="DM Mono" font-size="7" fill="#4ade80">● REC</text>
+          <text x="127" y="205" text-anchor="middle" font-family="DM Mono" font-size="6" fill="#888">4K 120fps</text>
+          <text x="163" y="213" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#333"
+            letter-spacing="3">SONY</text>
+          <text x="248" y="216" text-anchor="middle" font-family="DM Sans" font-size="16" fill="#cc1e1e">α</text>
+          <rect x="238" y="96" width="22" height="12" rx="3" fill="#cc1e1e" />
+          <text x="249" y="106" text-anchor="middle" font-family="DM Mono" font-size="5" fill="white">AF-ON</text>
+        </svg>
+        <div class="hero-lbl hl1">Full-Frame Sensor</div>
+        <div class="hero-lbl hl2">4K 120fps Video</div>
+        <div class="hero-lbl hl3">Real-Time AF</div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <div class="m-item"><span class="m-dot"></span>Sony Alpha Series</div>
+        <div class="m-item"><span class="m-dot"></span>Официальная гарантия</div>
+        <div class="m-item"><span class="m-dot"></span>Шоурум Ташкент</div>
+        <div class="m-item"><span class="m-dot"></span>G Master объективы</div>
+        <div class="m-item"><span class="m-dot"></span>4K Video</div>
+        <div class="m-item"><span class="m-dot"></span>Full Frame</div>
+        <div class="m-item"><span class="m-dot"></span>Быстрая доставка</div>
+        <div class="m-item"><span class="m-dot"></span>Sony Alpha Series</div>
+        <div class="m-item"><span class="m-dot"></span>Официальная гарантия</div>
+        <div class="m-item"><span class="m-dot"></span>Шоурум Ташкент</div>
+        <div class="m-item"><span class="m-dot"></span>G Master объективы</div>
+        <div class="m-item"><span class="m-dot"></span>4K Video</div>
+        <div class="m-item"><span class="m-dot"></span>Full Frame</div>
+        <div class="m-item"><span class="m-dot"></span>Быстрая доставка</div>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <section class="home-section">
+      <div class="sec-header fi">
+        <div>
+          <div class="eyebrow">Категории</div>
+          <h2 class="sec-title">ВЫБЕРИТЕ<br>КАТЕГОРИЮ</h2>
+        </div>
+        <a class="see-all" onclick="go('catalog')">Весь каталог <svg width="13" height="13" fill="none"
+            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg></a>
+      </div>
+      <div class="cat-grid fi">
+        <div class="cat-card" onclick="go('catalog','mirrorless')">
+          <div class="cat-card-bg" style="background:linear-gradient(135deg,#1a1a1a,#0a0a0a)">
+            <svg width="260" height="200" viewBox="0 0 260 200" fill="none" opacity=".7">
+              <rect x="25" y="50" width="210" height="120" rx="14" fill="#222" stroke="#333" stroke-width="1.5" />
+              <rect x="25" y="64" width="36" height="106" rx="10" fill="#1a1a1a" />
+              <circle cx="143" cy="110" r="54" fill="#111" stroke="#2a2a2a" stroke-width="2" />
+              <circle cx="143" cy="110" r="42" fill="#0d0d0d" />
+              <circle cx="143" cy="110" r="28" fill="#060d1a" />
+              <circle cx="200" cy="88" r="3.5" fill="#cc1e1e" /><text x="137" y="168" font-family="DM Sans"
+                font-size="8" fill="#444" letter-spacing="2">SONY</text><text x="196" y="171" font-family="DM Sans"
+                font-size="14" fill="#cc1e1e">α</text>
+            </svg>
+          </div>
+          <div class="cat-arrow"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></div>
+          <div class="cat-overlay">
+            <div class="cat-num">01 / 05</div>
+            <div class="cat-name">Беззеркальные<br>камеры</div>
+            <div class="cat-sub">Alpha series — ILCE-7, ILCE-6000</div>
+          </div>
+        </div>
+        <div class="cat-card" onclick="go('catalog','compact')">
+          <div class="cat-card-bg" style="background:#141414"><svg width="150" height="110" viewBox="0 0 150 110"
+              fill="none" opacity=".7">
+              <rect x="22" y="25" width="106" height="70" rx="8" fill="#222" stroke="#333" stroke-width="1.2" />
+              <circle cx="74" cy="60" r="24" fill="#111" stroke="#2a2a2a" stroke-width="1.5" />
+              <circle cx="74" cy="60" r="16" fill="#0d0d0d" />
+              <rect x="56" y="18" width="38" height="10" rx="3" fill="#1a1a1a" stroke="#2a2a2a" />
+              <circle cx="108" cy="38" r="3" fill="#cc1e1e" />
+            </svg></div>
+          <div class="cat-arrow"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></div>
+          <div class="cat-overlay">
+            <div class="cat-num">02 / 05</div>
+            <div class="cat-name">Компактные<br>камеры</div>
+            <div class="cat-sub">Маленькие, лёгкие, мощные</div>
+          </div>
+        </div>
+        <div class="cat-card" onclick="go('catalog','lenses')">
+          <div class="cat-card-bg" style="background:#121212"><svg width="150" height="110" viewBox="0 0 150 110"
+              fill="none" opacity=".7">
+              <rect x="54" y="6" width="42" height="98" rx="12" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5" />
+              <rect x="48" y="16" width="54" height="13" rx="4" fill="#222" stroke="#333" />
+              <rect x="48" y="81" width="54" height="13" rx="4" fill="#222" stroke="#333" />
+              <ellipse cx="75" cy="55" rx="20" ry="20" fill="#0a0d14" stroke="#1a2030" stroke-width="1.5" />
+              <ellipse cx="75" cy="55" rx="13" ry="13" fill="#06080f" />
+            </svg></div>
+          <div class="cat-arrow"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></div>
+          <div class="cat-overlay">
+            <div class="cat-num">03 / 05</div>
+            <div class="cat-name">Объективы</div>
+            <div class="cat-sub">G Master, Zeiss линзы</div>
+          </div>
+        </div>
+        <div class="cat-card" onclick="go('catalog','video')">
+          <div class="cat-card-bg" style="background:#111"><svg width="150" height="110" viewBox="0 0 150 110"
+              fill="none" opacity=".7">
+              <rect x="18" y="30" width="84" height="54" rx="8" fill="#1a1a1a" stroke="#333" stroke-width="1.5" />
+              <circle cx="58" cy="57" r="19" fill="#111" stroke="#222" stroke-width="1.5" />
+              <circle cx="58" cy="57" r="12" fill="#0a0a0a" />
+              <polygon points="132,30 102,44 102,70 132,84" fill="#222" stroke="#333" stroke-width="1.5" />
+              <circle cx="58" cy="57" r="5" fill="#cc1e1e" />
+            </svg></div>
+          <div class="cat-arrow"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></div>
+          <div class="cat-overlay">
+            <div class="cat-num">04 / 05</div>
+            <div class="cat-name">Видеокамеры</div>
+            <div class="cat-sub">4K, slow-motion, cinema</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP PRODUCTS -->
+    <section class="home-section no-top">
+      <div class="sec-header fi">
+        <div>
+          <div class="eyebrow">Топ продажи</div>
+          <h2 class="sec-title">ЛУЧШИЕ<br>ТОВАРЫ</h2>
+        </div>
+        <a class="see-all" onclick="go('catalog')">Все товары <svg width="13" height="13" fill="none"
+            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg></a>
+      </div>
+      <div class="prod-grid fi" id="homeProdGrid">
+        <div class="prod-card" onclick="openProduct('ilce-7c')">
+          <div class="prod-img">
+            <img src="./public/images/a7V-image.jpg" alt="">
+            <span class="badge badge-top">Топ</span>
+            <svg width="150" height="120" viewBox="0 0 150 120" fill="none"><rect x="15" y="28" width="120" height="70" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="15" y="40" width="22" height="58" rx="8" fill="#161616"/><circle cx="82" cy="63" r="30" fill="#111" stroke="#222" stroke-width="1.5"/><circle cx="82" cy="63" r="22" fill="#0d0d0d"/><circle cx="82" cy="63" r="14" fill="#060d1a"/><circle cx="108" cy="46" r="3.5" fill="#cc1e1e"/><rect x="50" y="22" width="52" height="10" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/><text x="75" y="100" font-family="DM Sans" font-size="6" fill="#333" letter-spacing="2" text-anchor="middle">SONY</text><text x="108" y="103" font-family="DM Sans" font-size="13" fill="#cc1e1e">α</text></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">Sony Alpha 7C</div>
+            <div class="prod-model">ILCE-7C</div>
+            <div class="prod-footer">
+              <div><div class="prod-price-lbl">Цена</div><div class="prod-price">20 608 000 сум</div></div>
+              <button class="btn-add" onclick="event.stopPropagation();toast('Добавлено в корзину')">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card" onclick="openProduct('ilce-7m4')">
+          <div class="prod-img">
+            <img src="./public/images/a7V-image.jpg" alt="">
+            <span class="badge badge-new">Новинка</span>
+            <svg width="150" height="120" viewBox="0 0 150 120" fill="none"><rect x="15" y="28" width="120" height="70" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="15" y="40" width="22" height="58" rx="8" fill="#161616"/><circle cx="82" cy="63" r="30" fill="#111" stroke="#222" stroke-width="1.5"/><circle cx="82" cy="63" r="22" fill="#0d0d0d"/><circle cx="82" cy="63" r="14" fill="#060d1a"/><circle cx="108" cy="46" r="3.5" fill="#cc1e1e"/><rect x="50" y="22" width="52" height="10" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/><text x="75" y="100" font-family="DM Sans" font-size="6" fill="#333" letter-spacing="2" text-anchor="middle">SONY</text><text x="108" y="103" font-family="DM Sans" font-size="13" fill="#cc1e1e">α</text></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">Sony Alpha 7 IV</div>
+            <div class="prod-model">ILCE-7M4</div>
+            <div class="prod-footer">
+              <div><div class="prod-price-lbl">Цена</div><div class="prod-price">35 420 000 сум</div></div>
+              <button class="btn-add" onclick="event.stopPropagation();toast('Добавлено в корзину')">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card" onclick="openProduct('rx100-vii')">
+          <div class="prod-img">
+            <img src="./public/images/a7V-image.jpg" alt="">
+            <span class="badge badge-top">Топ</span>
+            <svg width="150" height="120" viewBox="0 0 150 120" fill="none"><rect x="15" y="28" width="120" height="70" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="15" y="40" width="22" height="58" rx="8" fill="#161616"/><circle cx="82" cy="63" r="30" fill="#111" stroke="#222" stroke-width="1.5"/><circle cx="82" cy="63" r="22" fill="#0d0d0d"/><circle cx="82" cy="63" r="14" fill="#060d1a"/><circle cx="108" cy="46" r="3.5" fill="#cc1e1e"/><rect x="50" y="22" width="52" height="10" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/><text x="75" y="100" font-family="DM Sans" font-size="6" fill="#333" letter-spacing="2" text-anchor="middle">SONY</text><text x="108" y="103" font-family="DM Sans" font-size="13" fill="#cc1e1e">α</text></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">Sony RX100 VII</div>
+            <div class="prod-model">DSC-RX100M7</div>
+            <div class="prod-footer">
+              <div><div class="prod-price-lbl">Цена</div><div class="prod-price">9 800 000 сум</div></div>
+              <button class="btn-add" onclick="event.stopPropagation();toast('Добавлено в корзину')">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card" onclick="openProduct('sel2470gm')">
+          <div class="prod-img">
+            <svg width="100" height="70" viewBox="0 0 100 70" fill="none"><rect x="10" y="10" width="80" height="50" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="22" y="22" width="56" height="26" rx="4" fill="#111" stroke="#222"/><rect x="38" y="6" width="24" height="8" rx="3" fill="#222" stroke="#333"/><circle cx="50" cy="35" r="8" fill="#060d1a" stroke="#1a2030"/><circle cx="50" cy="35" r="4" fill="#040a12"/></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">FE 24-70mm f/2.8 GM</div>
+            <div class="prod-model">SEL2470GM</div>
+            <div class="prod-footer">
+              <div><div class="prod-old-price">17 800 000 сум</div><div class="prod-price-lbl">Цена</div><div class="prod-price">15 000 000 сум</div></div>
+              <button class="btn-add" onclick="event.stopPropagation();toast('Добавлено в корзину')">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <div class="info-grid fi">
+      <div class="info-card">
+        <div class="info-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+            viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4" />
+            <circle cx="12" cy="12" r="9" />
+          </svg></div>
+        <div class="info-title">Официальная гарантия</div>
+        <p class="info-desc">2 года официальной гарантии Sony на все товары. Любые неисправности устраняются бесплатно.
+        </p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+            viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg></div>
+        <div class="info-title">Быстрая доставка</div>
+        <p class="info-desc">По Ташкенту — в течение 24 часов. По другим городам — 1-3 дня. Бесплатно от 5 000 000 сум.
+        </p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+            viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg></div>
+        <div class="info-title">Шоурум</div>
+        <p class="info-desc">Навои, 14 — посмотрите все товары вживую, протестируйте камеры и получите бесплатную
+          консультацию.</p>
+      </div>
+    </div>
+
+    <!-- NEWS PREVIEW -->
+    <section class="home-section no-top">
+      <div class="sec-header fi">
+        <div>
+          <div class="eyebrow">Последние новости</div>
+          <h2 class="sec-title">НОВОСТИ</h2>
+        </div>
+        <a class="see-all" onclick="go('news')">Все новости <svg width="13" height="13" fill="none"
+            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg></a>
+      </div>
+      <div class="news-list fi" id="homeNews">
+        <div class="loading">
+          <div class="spin"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <a class="logo" onclick="go('home')">
+            <div class="logo-icon">α</div><span class="logo-text">SONY<span>ALPHA</span></span>
+          </a>
+          <p class="footer-brand-desc">Официальный магазин Sony Alpha в Ташкенте. Камеры, объективы и аксессуары с
+            гарантией.</p>
+          <div class="footer-socials">
+            <a class="social-btn" href="https://t.me/SonyAlphaUZ" target="_blank">TG</a>
+            <a class="social-btn" href="https://instagram.com/SonyAlphaUz" target="_blank">IG</a>
+            <a class="social-btn" href="https://facebook.com/SonyAlphaUz" target="_blank">FB</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Каталог</h4>
+          <ul>
+            <li><a onclick="go('catalog','mirrorless')">Беззеркальные</a></li>
+            <li><a onclick="go('catalog','compact')">Компактные</a></li>
+            <li><a onclick="go('catalog','lenses')">Объективы</a></li>
+            <li><a onclick="go('catalog','video')">Видеокамеры</a></li>
+            <li><a onclick="go('catalog','accessories')">Аксессуары</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Информация</h4>
+          <ul>
+            <li><a onclick="go('contact')">Доставка и оплата</a></li>
+            <li><a onclick="go('contact')">Гарантия</a></li>
+            <li><a onclick="go('contact')">Возврат</a></li>
+            <li><a onclick="go('news')">Новости</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <ul>
+            <li><a href="tel:+998951705522">+998 95 170 55 22</a></li>
+            <li><a href="mailto:info@nmp-d.com">info@nmp-d.com</a></li>
+            <li><a onclick="go('contact')">Навои, 14, Ташкент</a></li>
+            <li><a>Пн–Пт: 10:00–18:00</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 SonyAlpha.uz — Все права защищены</span>
+        <div class="footer-loc"><span class="loc-dot"></span>Ташкент, Узбекистан</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ══════ PAGE: CATALOG ══════ -->
+  <div class="page" id="page-catalog">
+    <div class="catalog-layout">
+      <aside class="sidebar">
+        <div class="sidebar-title">ФИЛЬТРЫ</div>
+        <div class="sidebar-section">
+          <div class="sidebar-label">Категория</div>
+          <button class="filter-btn active" onclick="filterCat('',this)">Все товары</button>
+          <button class="filter-btn" onclick="filterCat('mirrorless',this)">Беззеркальные</button>
+          <button class="filter-btn" onclick="filterCat('compact',this)">Компактные</button>
+          <button class="filter-btn" onclick="filterCat('lenses',this)">Объективы</button>
+          <button class="filter-btn" onclick="filterCat('video',this)">Видеокамеры</button>
+          <button class="filter-btn" onclick="filterCat('accessories',this)">Аксессуары</button>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-label">Сортировка</div>
+          <select class="sort-select" onchange="sortProducts(this.value)">
+            <option value="">По умолчанию</option>
+            <option value="price_asc">Сначала дешевле</option>
+            <option value="price_desc">Сначала дороже</option>
+            <option value="newest">Новинки</option>
+          </select>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-label">Наличие</div>
+          <button class="filter-btn" onclick="filterBadge('top',this)">Топ продаж</button>
+          <button class="filter-btn" onclick="filterBadge('new',this)">Новинки</button>
+          <button class="filter-btn" onclick="filterBadge('',this)">Все</button>
+        </div>
+      </aside>
+      <div class="catalog-main">
+        <div class="catalog-header">
+          <div>
+            <div class="eyebrow" id="catalogEyebrow">Каталог</div>
+            <h1 class="catalog-title" id="catalogTitle">ВСЕ ТОВАРЫ</h1>
+          </div>
+          <div style="display:flex;gap:15px;align-items:center">
+            <div class="catalog-count" id="catalogCount"></div>
+            <div class="catalog-view-toggle" id="catalogViewToggle">
+              <button id="viewGroupBtn" onclick="setCatalogView('group')">По категориям</button>
+              <button id="viewAllRowBtn" onclick="setCatalogView('allrow')">Все в строку</button>
+            </div>
+          </div>
+        </div>
+        <div class="prod-grid col3" id="catalogGrid">
+          <div class="loading">
+            <div class="spin"></div>Загрузка...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ PAGE: PRODUCT DETAIL ══════ -->
+  <div class="page" id="page-product">
+    <div class="pd-wrap">
+      <div class="pd-hero">
+        <div class="pd-gallery">
+          <button class="back-btn" onclick="goBack()">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M19 12H5M12 5l-7 7 7 7" />
+            </svg>
+            Назад
+          </button>
+          <div class="pd-main" id="pdMainImg"></div>
+          <div class="pd-thumbs" id="pdThumbs"></div>
+        </div>
+        <div class="pd-panel">
+          <div class="eyebrow" id="pdCategory"></div>
+          <h1 class="pd-name" id="pdName"></h1>
+          <div class="pd-model" id="pdModel"></div>
+          <div class="pd-price-wrap">
+            <div class="pd-price-lbl">Цена</div>
+            <div class="pd-price" id="pdPrice"></div>
+            <div class="pd-old-price" id="pdOldPrice"></div>
+          </div>
+          <div class="pd-stock" id="pdStock"></div>
+          <p class="pd-desc" id="pdDesc"></p>
+          <div class="pd-qty">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <div class="qty-num" id="pdQty">1</div>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+          <div class="pd-actions">
+            <button class="btn-buy" onclick="buyNow()">Купить сейчас</button>
+            <button class="btn-add-cart" onclick="addToCartFromDetail()">+ В корзину</button>
+          </div>
+          <div class="pd-info-row">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4" />
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+            <span><strong>Гарантия:</strong> 2 года официальной гарантии Sony</span>
+          </div>
+          <div class="pd-info-row">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+            <span><strong>Доставка:</strong> По Ташкенту 24 часа, бесплатно от 5 млн сум</span>
+          </div>
+          <div class="pd-info-row">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            </svg>
+            <span><strong>Самовывоз:</strong> Навои, 14 — Пн–Пт 10:00–18:00</span>
+          </div>
+        </div>
+      </div>
+      <!-- Specs + Related -->
+      <div class="pd-tabs-section">
+        <div class="pd-tabs tabs">
+          <button class="tab active" onclick="pdTab('specs',this)">Характеристики</button>
+          <button class="tab" onclick="pdTab('related',this)">Похожие товары</button>
+        </div>
+        <div id="pdTabSpecs">
+          <div class="specs-grid" id="specsGrid"></div>
+        </div>
+        <div id="pdTabRelated" style="display:none">
+          <div class="related-grid" id="relatedGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ PAGE: NEWS ══════ -->
+  <div class="page" id="page-news">
+    <div class="news-page">
+      <button class="back-btn" onclick="go('home')">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path d="M19 12H5M12 5l-7 7 7 7" />
+        </svg>
+        Главная
+      </button>
+      <h1 class="news-page-title">НОВОСТИ<br><span style="color:var(--red)">& АКЦИИ</span></h1>
+      <div class="news-list" id="newsListFull">
+        <div class="loading">
+          <div class="spin"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ PAGE: ARTICLE ══════ -->
+  <div class="page" id="page-article">
+    <div class="article-page">
+      <div class="article-hero" id="articleHero"></div>
+      <div class="article-content">
+        <button class="back-btn" onclick="go('news')">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          Новости
+        </button>
+        <div class="article-date" id="articleDate"></div>
+        <h1 class="article-title" id="articleTitle"></h1>
+        <div class="article-body" id="articleBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ PAGE: CONTACT ══════ -->
+  <div class="page" id="page-contact">
+    <div style="padding:100px 80px 80px">
+      <button class="back-btn" onclick="go('home')"><svg width="13" height="13" fill="none" stroke="currentColor"
+          stroke-width="1.5" viewBox="0 0 24 24">
+          <path d="M19 12H5M12 5l-7 7 7 7" />
+        </svg> Главная</button>
+      <div class="eyebrow">Контакты & Шоурум</div>
+      <h1 class="sec-title" style="margin-bottom:52px">КАК НАС<br><span style="color:var(--red)">НАЙТИ</span></h1>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
+        <div style="background:var(--g1);padding:40px">
+          <h3 style="font-family:var(--fd);font-size:24px;letter-spacing:1px;margin-bottom:24px">Шоурум</h3>
+          <div class="pd-info-row"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <div><strong>Адрес</strong>
+              <div class="info-desc">г. Ташкент, проспект Навои, 14</div>
+            </div>
+          </div>
+          <div class="pd-info-row"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <div><strong>Режим работы</strong>
+              <div class="info-desc">Понедельник – Пятница: 10:00 – 18:00</div>
+            </div>
+          </div>
+          <div class="pd-info-row"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 17z" />
+            </svg>
+            <div><strong>Телефон</strong>
+              <div class="info-desc"><a href="tel:+998951705522" style="color:var(--red);text-decoration:none">+998 95
+                  170 55 22</a></div>
+            </div>
+          </div>
+          <div class="pd-info-row"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <div><strong>Email</strong>
+              <div class="info-desc"><a href="mailto:info@nmp-d.com"
+                  style="color:var(--red);text-decoration:none">info@nmp-d.com</a></div>
+            </div>
+          </div>
+          <div
+            style="background:var(--g2);height:200px;border-radius:3px;display:flex;align-items:center;justify-content:center;margin-top:24px;color:var(--g4);font-family:var(--fm);font-size:11px;letter-spacing:1px">
+            📍 Карта · Навои, 14</div>
+        </div>
+        <div style="background:var(--g1);padding:40px">
+          <h3 style="font-family:var(--fd);font-size:24px;letter-spacing:1px;margin-bottom:24px">Обратный звонок</h3>
+          <p style="font-size:13px;color:var(--g5);line-height:1.8;margin-bottom:24px">Оставьте номер — перезвоним в
+            течение 30 минут в рабочее время.</p>
+          <div class="form-group"><label class="form-label">Ваше имя</label><input class="form-input" id="cbName"
+              placeholder="Имя"></div>
+          <div class="form-group"><label class="form-label">Телефон</label><input class="form-input" id="cbPhone"
+              placeholder="+998 90 123 45 67" type="tel"></div>
+          <div class="form-group"><label class="form-label">Вопрос</label><input class="form-input" id="cbMsg"
+              placeholder="Интересующий вас товар..."></div>
+          <button class="btn-primary" onclick="submitCallback()" style="width:100%">Отправить заявку</button>
+          <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--g2)">
+            <h4 style="font-family:var(--fd);font-size:18px;letter-spacing:1px;margin-bottom:14px">Соцсети</h4>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <a href="https://t.me/SonyAlphaUZ" target="_blank" class="btn-ghost"
+                style="padding:9px 18px;font-size:11px">Telegram</a>
+              <a href="https://instagram.com/SonyAlphaUz" target="_blank" class="btn-ghost"
+                style="padding:9px 18px;font-size:11px">Instagram</a>
+              <a href="https://facebook.com/SonyAlphaUz" target="_blank" class="btn-ghost"
+                style="padding:9px 18px;font-size:11px">Facebook</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ PAGE: ADMIN ══════ -->
+  <div class="page" id="page-admin">
+    <div class="admin-page">
+      <div id="adminLoginWrap" class="admin-login">
+        <div class="admin-login-box">
+          <div class="admin-login-title">ВХОД В ПАНЕЛЬ</div>
+          <div class="form-group"><label class="form-label">Логин</label><input class="form-input" id="aUser"
+              value="admin" placeholder="admin"></div>
+          <div class="form-group"><label class="form-label">Пароль</label><input class="form-input" id="aPass"
+              type="password" value="admin123" placeholder="••••••••"></div>
+          <button class="btn-primary" style="width:100%" onclick="adminLogin()">Войти</button>
+          <p style="font-size:11px;color:var(--g4);margin-top:12px;text-align:center;font-family:var(--fm)">admin /
+            admin123</p>
+        </div>
+      </div>
+      <div id="adminPanelWrap" style="display:none">
+        <div class="admin-layout">
+          <nav class="admin-nav">
+            <div class="admin-nav-title" style="margin-top:16px">Панель управления</div>
+            <button class="admin-nav-btn active" onclick="adminSection('dashboard',this)">📊 Статистика</button>
+            <button class="admin-nav-btn" onclick="adminSection('orders',this)">📦 Заказы</button>
+            <button class="admin-nav-btn" onclick="adminSection('products',this)">📷 Товары</button>
+            <button class="admin-nav-btn" onclick="adminSection('news',this)">📰 Новости</button>
+            <div style="margin-top:auto;padding:20px">
+              <button class="btn-ghost" style="width:100%;font-size:11px;padding:9px"
+                onclick="adminLogout()">Выйти</button>
+            </div>
+          </nav>
+          <div class="admin-content">
+            <!-- Dashboard -->
+            <div class="admin-section active" id="adminDashboard">
+              <div class="admin-title">СТАТИСТИКА</div>
+              <div class="stats-grid" id="statsGrid">
+                <div class="loading">
+                  <div class="spin"></div>
+                </div>
+              </div>
+              <h3 style="font-family:var(--fd);font-size:24px;letter-spacing:1px;margin-bottom:16px">Последние заказы
+              </h3>
+              <div id="recentOrders">
+                <div class="loading">
+                  <div class="spin"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Orders -->
+            <div class="admin-section" id="adminOrders">
+              <div class="admin-title">ЗАКАЗЫ</div>
+              <div id="ordersTable">
+                <div class="loading">
+                  <div class="spin"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Products -->
+            <div class="admin-section" id="adminProducts">
+              <div class="admin-title">ТОВАРЫ</div>
+              <div id="productsTable">
+                <div class="loading">
+                  <div class="spin"></div>
+                </div>
+              </div>
+            </div>
+            <!-- News -->
+            <div class="admin-section" id="adminNewsSection">
+              <div class="admin-title">НОВОСТИ</div>
+              <div id="newsTable">
+                <div class="loading">
+                  <div class="spin"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API = 'http://localhost:5000/api';
+    let cart = JSON.parse(localStorage.getItem('sa_cart') || '[]');
+    let currentProduct = null;
+    let currentQty = 1;
+    let adminToken = localStorage.getItem('sa_admin_token') || '';
+    let catalogParams = { category: '', sort: '', badge: '', view: 'group' };
+    let prevPage = 'home';
+
+    const sampleProducts = [
+      { slug: 'ilce-7c', category_slug: 'mirrorless', category_name: 'Беззеркальные камеры', badge: 'top', name_ru: 'Sony Alpha 7C', model: 'ILCE-7C', price: 20608000 },
+      { slug: 'ilce-7m4', category_slug: 'mirrorless', category_name: 'Беззеркальные камеры', badge: 'new', name_ru: 'Sony Alpha 7 IV', model: 'ILCE-7M4', price: 35420000 },
+      { slug: 'rx100-vii', category_slug: 'compact', category_name: 'Компактные камеры', badge: 'top', name_ru: 'Sony RX100 VII', model: 'DSC-RX100M7', price: 9800000 },
+      { slug: 'sel2470gm', category_slug: 'lenses', category_name: 'Объективы', badge: '', name_ru: 'FE 24-70mm f/2.8 GM', model: 'SEL2470GM', price: 15000000, old_price: 17800000 },
+      { slug: 'fx3', category_slug: 'video', category_name: 'Видеокамеры', badge: '', name_ru: 'Sony FX3', model: 'ILME-FX3', price: 42000000, description_ru: 'Кино-камерa full-frame, компактный корпус для съемки видео.' },
+      { slug: 'fx2', category_slug: 'video', category_name: 'Видеокамеры', badge: '', name_ru: 'Sony FX2', model: 'ILME-FX2', price: 52000000, description_ru: 'Профессиональная кинокамера с поддержкой высоких битрейтов.' },
+      { slug: 'sony-headphones', category_slug: 'accessories', category_name: 'Аксессуары', badge: '', name_ru: 'Sony Headphones', model: 'WH-1000XM5', price: 3500000, description_ru: 'Беспроводные шумоподавляющие наушники Sony.' }
+    ];
+
+    // ── CURSOR ──────────────────────────────────────
+    const cur = document.getElementById('cur');
+    const curRing = document.getElementById('cur-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+      rx += (mx - rx) * .12; ry += (my - ry) * .12;
+      curRing.style.left = rx + 'px'; curRing.style.top = ry + 'px';
+      requestAnimationFrame(tick);
+    })();
+
+    // ── TOAST ────────────────────────────────────────
+    function toast(msg, dur = 2800) {
+      const t = document.getElementById('toast');
+      t.innerHTML = `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> ${msg}`;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), dur);
+    }
+
+    // ── PAGE NAV ─────────────────────────────────────
+    function go(pageId, param) {
+      prevPage = document.querySelector('.page.active')?.id?.replace('page-', '') || 'home';
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + pageId).classList.add('active');
+      window.scrollTo(0, 0);
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      const navEl = document.getElementById('nav-' + pageId) || document.getElementById('nav-' + param);
+      if (navEl) navEl.classList.add('active');
+      // page init
+      if (pageId === 'home') initHome();
+      if (pageId === 'catalog') initCatalog(param);
+      if (pageId === 'news') initNews();
+      if (pageId === 'admin') initAdmin();
+      // fade-ins
+      setTimeout(() => {
+        document.querySelectorAll('#page-' + pageId + ' .fi').forEach((el, i) => {
+          setTimeout(() => el.classList.add('v'), i * 80);
+        });
+      }, 50);
+    }
+    function goBack() { go(prevPage); }
+
+    // ── FORMAT PRICE ─────────────────────────────────
+    function fmt(n) { return Number(n).toLocaleString('ru-RU') + ' сум'; }
+
+    // ── SVG ICONS by category ────────────────────────
+    function prodSVG(cat) {
+      if (cat === 'lenses') return `<svg width="90" height="130" viewBox="0 0 90 130" fill="none"><rect x="24" y="6" width="42" height="118" rx="13" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="18" y="18" width="54" height="15" rx="4" fill="#222" stroke="#333"/><rect x="18" y="97" width="54" height="15" rx="4" fill="#222" stroke="#333"/><ellipse cx="45" cy="64" rx="23" ry="23" fill="#0a0d14" stroke="#1a2030" stroke-width="1.5"/><ellipse cx="45" cy="64" rx="14" ry="14" fill="#060810"/><ellipse cx="39" cy="57" rx="7" ry="4" fill="rgba(100,150,255,.12)" transform="rotate(-20 39 57)"/></svg>`;
+      if (cat === 'video') return `<svg width="150" height="110" viewBox="0 0 150 110" fill="none"><rect x="14" y="22" width="80" height="56" rx="8" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/><circle cx="52" cy="50" r="20" fill="#111" stroke="#222" stroke-width="1.5"/><circle cx="52" cy="50" r="13" fill="#0a0a0a"/><polygon points="126,22 94,36 94,64 126,78" fill="#222" stroke="#333" stroke-width="1.5"/><circle cx="52" cy="50" r="5" fill="#cc1e1e"/><rect x="22" y="28" width="12" height="8" rx="2" fill="#cc1e1e" opacity=".8"/></svg>`;
+      if (cat === 'accessories') return `<svg width="100" height="70" viewBox="0 0 100 70" fill="none"><rect x="10" y="10" width="80" height="50" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="22" y="22" width="56" height="26" rx="4" fill="#111" stroke="#222"/><rect x="38" y="6" width="24" height="8" rx="3" fill="#222" stroke="#333"/><circle cx="50" cy="35" r="8" fill="#060d1a" stroke="#1a2030"/><circle cx="50" cy="35" r="4" fill="#040a12"/></svg>`;
+      return `<svg width="150" height="120" viewBox="0 0 150 120" fill="none"><rect x="15" y="28" width="120" height="70" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/><rect x="15" y="40" width="22" height="58" rx="8" fill="#161616"/><circle cx="82" cy="63" r="30" fill="#111" stroke="#222" stroke-width="1.5"/><circle cx="82" cy="63" r="22" fill="#0d0d0d"/><circle cx="82" cy="63" r="14" fill="#060d1a"/><circle cx="108" cy="46" r="3.5" fill="#cc1e1e"/><rect x="50" y="22" width="52" height="10" rx="3" fill="#1a1a1a" stroke="#2a2a2a"/><text x="75" y="100" font-family="DM Sans" font-size="6" fill="#333" letter-spacing="2" text-anchor="middle">SONY</text><text x="108" y="103" font-family="DM Sans" font-size="13" fill="#cc1e1e">α</text></svg>`;
+    }
+
+    // ── PRODUCT CARD HTML ─────────────────────────────
+    function prodCardHTML(p) {
+      const badge = p.badge === 'top' ? `<span class="badge badge-top">Топ</span>` : p.badge === 'new' ? `<span class="badge badge-new">Новинка</span>` : '';
+      const categoryLabel = p.category_name || p.category_slug ? `<div class="prod-cat">${p.category_name || p.category_slug}</div>` : '';
+      const oldP = p.old_price ? `<div class="prod-old-price">${fmt(p.old_price)}</div>` : '';
+      // image slot: prefer server-provided `images[0]`, fallback to public/images/<slug>.jpg
+      const imgSrc = (p.images && p.images.length) ? p.images[0] : `public/images/${p.slug}.jpg`;
+      const imgTag = `<img class="prod-photo" src="${imgSrc}" alt="${p.name_ru}" onerror="this.style.display='none'"/>`;
+      return `<div class="prod-card" onclick="openProduct('${p.slug}')">
+    <div class="prod-img">${imgTag}${badge}${prodSVG(p.category_slug || p.cat)}</div>
+    <div class="prod-body">
+      <div class="prod-name">${p.name_ru}</div>
+      <div class="prod-model">${p.model}</div>
+      ${categoryLabel}
+      <div class="prod-desc">${(p.description_ru || '').replace(/</g,'&lt;')}</div>
+      <div class="prod-footer">
+        <div>${oldP}<div class="prod-price-lbl">Цена</div><div class="prod-price">${fmt(p.price)}</div></div>
+        <button class="btn-add" onclick="event.stopPropagation();quickAddCart(${JSON.stringify(p).replace(/\"/g, '&quot;')})">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>`;
+    }
+
+    // duplicate spreading helper: interleave copies so duplicates are distributed
+    function spreadDuplicates(items, copies = 5) {
+      if (!items || !items.length) return [];
+      const n = items.length;
+      if (n === 1) {
+        // single item: just repeat
+        return Array.from({ length: copies }, () => items[0]);
+      }
+      const res = [];
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < copies; j++) {
+          res.push(items[(i + j) % n]);
+        }
+      }
+      return res;
+    }
+
+    function padToCols(arr, cols = 3) {
+      if (!arr || !arr.length) return arr;
+      const res = arr.slice();
+      while (res.length % cols !== 0) {
+        res.push(res[res.length % arr.length]);
+      }
+      return res;
+    }
+
+    // ── NEWS ROW HTML ─────────────────────────────────
+    function newsRowHTML(n) {
+      const icons = { 'sony-alpha-7c-ii': '📷', 'gmaster-lenses-2025': '🔭', 'trade-in-program': '🔄' };
+      const icon = icons[n.slug] || '📰';
+      const date = new Date(n.created_at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+      return `<div class="news-row" onclick="openArticle('${n.slug}')">
+    <div class="news-img"><div class="news-img-inner" style="font-size:64px;background:#1a1a2a;width:100%;height:100%;display:flex;align-items:center;justify-content:center">${icon}</div></div>
+    <div class="news-body">
+      <div class="news-date">${date}</div>
+      <div class="news-title">${n.title_ru}</div>
+      <div class="news-excerpt">${n.excerpt_ru || ''}</div>
+      <div class="news-more">Читать далее <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </div>`;
+    }
+
+    // ── HOME ──────────────────────────────────────────
+    async function initHome() {
+      // Product count stat
+      try {
+        const r = await fetch(`${API}/products?limit=100`);
+        const d = await r.json();
+        const el = document.getElementById('heroStatProd');
+        if (el) el.innerHTML = `${d.total || d.products?.length || 18}<span>+</span>`;
+        const grid = document.getElementById('homeProdGrid');
+        if (grid) {
+          const top = (d.products || []).filter(p => p.badge === 'top').slice(0, 4);
+          let show = top.length ? top : (d.products || []).slice(0, 4);
+          if (!show.length) show = sampleProducts;
+          grid.innerHTML = show.map(prodCardHTML).join('') || '<div class="empty-state">Нет товаров</div>';
+        }
+      } catch (e) {
+        console.error(e);
+        const grid = document.getElementById('homeProdGrid');
+        if (grid) grid.innerHTML = sampleProducts.map(prodCardHTML).join('');
+      }
+      // News preview
+      try {
+        const r = await fetch(`${API}/news`);
+        const d = await r.json();
+        const el = document.getElementById('homeNews');
+        if (el) el.innerHTML = (d.news || []).slice(0, 2).map(newsRowHTML).join('') || '';
+      } catch (e) { }
+    }
+
+    // ── CATALOG ──────────────────────────────────────
+    const catNames = {
+      '': 'ВСЕ ТОВАРЫ',
+      mirrorless: 'БЕЗЗЕРКАЛЬНЫЕ КАМЕРЫ',
+      compact: 'КОМПАКТНЫЕ КАМЕРЫ',
+      lenses: 'ОБЪЕКТИВЫ',
+      video: 'ВИДЕОКАМЕРЫ',
+      accessories: 'АКСЕССУАРЫ'
+    };
+    const catEyebrow = {
+      '': 'Каталог',
+      mirrorless: 'Фотокамеры',
+      compact: 'Фотокамеры',
+      lenses: 'Оптика',
+      video: 'Видео',
+      accessories: 'Аксессуары'
+    };
+
+    async function initCatalog(cat) {
+      if (cat !== undefined) catalogParams.category = cat;
+      const { category, sort, badge, view } = catalogParams;
+      document.getElementById('catalogTitle').textContent = catNames[category] || 'ВСЕ ТОВАРЫ';
+      document.getElementById('catalogEyebrow').textContent = catEyebrow[category] || 'Каталог';
+      // update view toggle buttons state
+      const gbtn = document.getElementById('viewGroupBtn');
+      const abtn = document.getElementById('viewAllRowBtn');
+      if (gbtn && abtn) {
+        gbtn.classList.toggle('active', view === 'group');
+        abtn.classList.toggle('active', view === 'allrow');
+      }
+      document.getElementById('catalogGrid').innerHTML = '<div class="loading"><div class="spin"></div>Загрузка...</div>';
+      // sync sidebar buttons
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        const v = b.getAttribute('onclick')?.match(/'([^']*)'/)?.[1] || '';
+        b.classList.toggle('active', v === category);
+      });
+      let url = `${API}/products?limit=100`;
+      if (category) url += `&category=${category}`;
+      if (sort) url += `&sort=${sort}`;
+      if (badge) url += `&badge=${badge}`;
+      const renderCatalogItems = items => {
+        const copies = 5;
+        if (!category) {
+          // when view is 'allrow' show all products interleaved across the single grid
+          if (view === 'allrow') {
+            let display = spreadDuplicates(items, copies);
+            display = padToCols(display, 3);
+            return `<div class="prod-grid col3">${display.map(prodCardHTML).join('')}</div>`;
+          }
+          // default grouped view: render each category in its own row, but spread duplicates within each row
+          const groups = items.reduce((acc, p) => {
+            const key = p.category_name || p.category_slug || 'Категория';
+            (acc[key] = acc[key] || []).push(p);
+            return acc;
+          }, {});
+          return Object.entries(groups).map(([cat, items]) => {
+            let display = spreadDuplicates(items, copies);
+            display = padToCols(display, 3);
+            return `
+            <div class="catalog-group">
+              <div class="catalog-group-title">${cat}</div>
+              <div class="prod-grid col3">${display.map(prodCardHTML).join('')}</div>
+            </div>`;
+          }).join('');
+        }
+        // single-category view: spread duplicates within that category
+        let display = spreadDuplicates(items, copies);
+        display = padToCols(display, 3);
+        return `<div class="prod-grid col3">${display.map(prodCardHTML).join('')}</div>`;
+      };
+      try {
+        const r = await fetch(url);
+        const d = await r.json();
+        const prods = d.products || [];
+        document.getElementById('catalogCount').textContent = `${prods.length} товаров`;
+        document.getElementById('catalogGrid').innerHTML = prods.length
+          ? renderCatalogItems(prods)
+          : '<div class="empty-state">😕<br>Товары не найдены</div>';
+      } catch (e) {
+        const fallbackItems = category ? sampleProducts.filter(p => p.category_slug === category) : sampleProducts;
+        document.getElementById('catalogGrid').innerHTML = renderCatalogItems(fallbackItems);
+      }
+    }
+    function setCatalogView(v) {
+      catalogParams.view = v;
+      document.getElementById('viewGroupBtn').classList.toggle('active', v === 'group');
+      document.getElementById('viewAllRowBtn').classList.toggle('active', v === 'allrow');
+      initCatalog();
+    }
+    function filterCat(cat, btn) {
+      catalogParams.category = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      initCatalog();
+    }
+    function sortProducts(val) { catalogParams.sort = val; initCatalog(); }
+    function filterBadge(val, btn) { catalogParams.badge = val; initCatalog(); }
+
+    // ── PRODUCT DETAIL ────────────────────────────────
+    async function openProduct(slug) {
+      go('product');
+      currentQty = 1;
+      document.getElementById('pdQty').textContent = '1';
+      document.getElementById('pdMainImg').innerHTML = '<div class="loading"><div class="spin"></div></div>';
+      try {
+        const r = await fetch(`${API}/products/${slug}`);
+        const d = await r.json();
+        const p = d.product;
+        currentProduct = p;
+        // Gallery
+        const cat = p.category_slug || '';
+        document.getElementById('pdMainImg').innerHTML = `<div style="transform:scale(1.1)">${prodSVG(cat)}</div>`;
+        if (p.badge) document.getElementById('pdMainImg').innerHTML += `<span class="pd-badge ${p.badge === 'new' ? 'badge-new' : 'badge-top'}">${p.badge === 'new' ? 'Новинка' : 'Топ'}</span>`;
+        // Thumbnails (3 variants of same SVG for demo)
+        document.getElementById('pdThumbs').innerHTML = [1, 2, 3].map((_, i) =>
+          `<div class="pd-thumb ${i === 0 ? 'active' : ''}" onclick="selectThumb(this)">${prodSVG(cat)}</div>`
+        ).join('');
+        // Info
+        document.getElementById('pdCategory').textContent = p.category_name || '';
+        document.getElementById('pdName').textContent = p.name_ru;
+        document.getElementById('pdModel').textContent = p.model;
+        document.getElementById('pdPrice').innerHTML = `${fmt(p.price)}`;
+        document.getElementById('pdOldPrice').innerHTML = p.old_price ? `Старая цена: ${fmt(p.old_price)}` : '';
+        document.getElementById('pdDesc').textContent = p.description_ru || '';
+        // Stock
+        const stockEl = document.getElementById('pdStock');
+        if (p.stock > 5) stockEl.className = 'pd-stock stock-in', stockEl.innerHTML = '<span class="pd-stock-dot"></span>В наличии';
+        else if (p.stock > 0) stockEl.className = 'pd-stock stock-low', stockEl.innerHTML = `<span class="pd-stock-dot"></span>Осталось ${p.stock} шт.`;
+        else stockEl.className = 'pd-stock stock-out', stockEl.innerHTML = '<span class="pd-stock-dot"></span>Нет в наличии';
+        // Specs
+        const specs = typeof p.specs === 'string' ? JSON.parse(p.specs) : p.specs;
+        document.getElementById('specsGrid').innerHTML = Object.entries(specs || {}).map(([k, v]) =>
+          `<div class="spec-row"><div class="spec-key">${k}</div><div class="spec-val">${v}</div></div>`
+        ).join('') || '<div style="padding:20px;color:var(--g4)">Характеристики не указаны</div>';
+        // Related
+        document.getElementById('relatedGrid').innerHTML = (d.related || []).length
+          ? d.related.map(rp => prodCardHTML({ ...rp, category_slug: cat })).join('')
+          : sampleProducts.filter(sp => sp.category_slug === cat).map(prodCardHTML).join('');
+        // reset tab
+        pdTab('specs', document.querySelector('.pd-tabs .tab'));
+      } catch (e) {
+        document.getElementById('pdMainImg').innerHTML = '<div style="padding:20px;color:var(--g4)">Ошибка загрузки</div>';
+        document.getElementById('relatedGrid').innerHTML = sampleProducts.map(prodCardHTML).join('');
+      }
+    }
+    function selectThumb(el) {
+      document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+    function pdTab(name, btn) {
+      document.querySelectorAll('.pd-tabs .tab').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      document.getElementById('pdTabSpecs').style.display = name === 'specs' ? 'block' : 'none';
+      document.getElementById('pdTabRelated').style.display = name === 'related' ? 'block' : 'none';
+    }
+    function changeQty(delta) {
+      currentQty = Math.max(1, Math.min(10, currentQty + delta));
+      document.getElementById('pdQty').textContent = currentQty;
+    }
+    function addToCartFromDetail() {
+      if (!currentProduct) return;
+      for (let i = 0; i < currentQty; i++) addToCartItem(currentProduct);
+      toast(`${currentProduct.name_ru} добавлен в корзину (${currentQty} шт.)`);
+    }
+    function buyNow() {
+      if (!currentProduct) return;
+      addToCartItem(currentProduct);
+      openOrder();
+    }
+
+    // ── CART ──────────────────────────────────────────
+    function saveCart() { localStorage.setItem('sa_cart', JSON.stringify(cart)); updateCartCount(); }
+    function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((s, i) => s + i.qty, 0); }
+    function quickAddCart(p) {
+      addToCartItem(p);
+      toast(`${p.name_ru} добавлен в корзину`);
+    }
+    function addToCartItem(p) {
+      const ex = cart.find(i => i.slug === p.slug);
+      if (ex) ex.qty++;
+      else cart.push({ slug: p.slug, name: p.name_ru, price: p.price, qty: 1, cat: p.category_slug || '' });
+      saveCart();
+    }
+    function openCart() {
+      renderCart();
+      document.getElementById('cartOverlay').classList.add('open');
+    }
+    function closeCart(e) {
+      if (!e || e.target === document.getElementById('cartOverlay'))
+        document.getElementById('cartOverlay').classList.remove('open');
+    }
+    function renderCart() {
+      const itemsEl = document.getElementById('cartItems');
+      const footerEl = document.getElementById('cartFooter');
+      if (!cart.length) {
+        itemsEl.innerHTML = '<div class="cart-empty"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" style="color:var(--g3)"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Корзина пуста</div>';
+        footerEl.innerHTML = '';
+        return;
+      }
+      itemsEl.innerHTML = cart.map((item, i) => `
+    <div class="cart-item">
+      <div class="cart-item-img">${prodSVG(item.cat)}</div>
+      <div>
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${fmt(item.price * item.qty)}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div class="cart-item-qty">
+          <button class="cart-qty-btn" onclick="cartQty(${i},-1)">−</button>
+          <span class="cart-qty-num">${item.qty}</span>
+          <button class="cart-qty-btn" onclick="cartQty(${i},1)">+</button>
+        </div>
+        <button class="cart-item-remove" onclick="cartRemove(${i})">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>`).join('');
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      footerEl.innerHTML = `
+    <div class="cart-total"><span class="cart-total-lbl">Итого</span><span class="cart-total-val">${fmt(total)}</span></div>
+    <button class="btn-buy" style="width:100%;margin-bottom:8px" onclick="closeCart();openOrder()">Оформить заказ</button>
+    <button class="btn-ghost" style="width:100%;text-align:center" onclick="cartClear()">Очистить корзину</button>`;
+    }
+    function cartQty(i, d) { cart[i].qty = Math.max(1, cart[i].qty + d); saveCart(); renderCart(); }
+    function cartRemove(i) { cart.splice(i, 1); saveCart(); renderCart(); }
+    function cartClear() { cart = []; saveCart(); renderCart(); }
+
+    // ── ORDER ──────────────────────────────────────────
+    function openOrder() {
+      if (!cart.length) { toast('Корзина пуста!'); return; }
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById('orderSummary').innerHTML = `
+    <div class="order-summary">
+      <div class="order-summary-title">Состав заказа</div>
+      ${cart.map(i => `<div class="order-summary-item"><span>${i.name} × ${i.qty}</span><span>${fmt(i.price * i.qty)}</span></div>`).join('')}
+      <div class="order-summary-total"><span>Итого</span><span>${fmt(total)}</span></div>
+    </div>`;
+      document.getElementById('orderOverlay').classList.add('open');
+    }
+    function closeOrder(e) {
+      if (!e || e.target === document.getElementById('orderOverlay'))
+        document.getElementById('orderOverlay').classList.remove('open');
+    }
+    function toggleAddress() {
+      const show = document.getElementById('oDelivery').value === 'delivery';
+      document.getElementById('addressGroup').style.display = show ? 'block' : 'none';
+    }
+    async function submitOrder() {
+      const name = document.getElementById('oName').value.trim();
+      const phone = document.getElementById('oPhone').value.trim();
+      if (!name || !phone) { toast('Заполните имя и телефон!'); return; }
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      try {
+        const r = await fetch(`${API}/orders`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customer_name: name,
+            customer_phone: phone,
+            customer_email: document.getElementById('oEmail').value,
+            delivery_address: document.getElementById('oAddress').value,
+            delivery_type: document.getElementById('oDelivery').value,
+            notes: document.getElementById('oNotes').value,
+            items: cart,
+            total
+          })
+        });
+        const d = await r.json();
+        if (d.success) {
+          closeOrder();
+          cart = []; saveCart(); renderCart();
+          toast(`✅ Заказ ${d.order_number} принят! Перезвоним в течение 30 минут.`, 5000);
+        } else { toast('Ошибка: ' + d.error); }
+      } catch (e) { toast('Ошибка соединения с сервером'); }
+    }
+    function submitCallback() {
+      const name = document.getElementById('cbName').value.trim();
+      const phone = document.getElementById('cbPhone').value.trim();
+      if (!name || !phone) { toast('Заполните имя и телефон!'); return; }
+      toast('✅ Заявка принята! Перезвоним в течение 30 минут.');
+      document.getElementById('cbName').value = '';
+      document.getElementById('cbPhone').value = '';
+      document.getElementById('cbMsg').value = '';
+    }
+
+    // ── NEWS ──────────────────────────────────────────
+    async function initNews() {
+      const el = document.getElementById('newsListFull');
+      try {
+        const r = await fetch(`${API}/news`);
+        const d = await r.json();
+        el.innerHTML = (d.news || []).map(newsRowHTML).join('') || '<div class="empty-state">Нет новостей</div>';
+      } catch (e) { el.innerHTML = '<div class="empty-state">Ошибка загрузки</div>'; }
+    }
+    async function openArticle(slug) {
+      go('article');
+      const icons = { 'sony-alpha-7c-ii': '📷', 'gmaster-lenses-2025': '🔭', 'trade-in-program': '🔄' };
+      try {
+        const r = await fetch(`${API}/news/${slug}`);
+        const d = await r.json();
+        const a = d.article;
+        const icon = icons[slug] || '📰';
+        document.getElementById('articleHero').innerHTML = `<div class="article-hero-img" style="background:linear-gradient(135deg,#1a1a2a,#0a0a14)">${icon}</div>`;
+        document.getElementById('articleDate').textContent = new Date(a.created_at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('articleTitle').textContent = a.title_ru;
+        document.getElementById('articleBody').innerHTML = a.body_ru || '';
+      } catch (e) {
+        document.getElementById('articleTitle').textContent = 'Ошибка загрузки';
+      }
+    }
+
+    // ── ADMIN ─────────────────────────────────────────
+    async function adminLogin() {
+      const u = document.getElementById('aUser').value;
+      const p = document.getElementById('aPass').value;
+      try {
+        const r = await fetch(`${API}/auth/login`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: u, password: p })
+        });
+        const d = await r.json();
+        if (d.token) {
+          adminToken = d.token;
+          localStorage.setItem('sa_admin_token', adminToken);
+          document.getElementById('adminLoginWrap').style.display = 'none';
+          document.getElementById('adminPanelWrap').style.display = 'block';
+          loadAdminDashboard();
+        } else { toast('Неверный логин или пароль'); }
+      } catch (e) { toast('Ошибка соединения'); }
+    }
+    function adminLogout() {
+      adminToken = ''; localStorage.removeItem('sa_admin_token');
+      document.getElementById('adminLoginWrap').style.display = 'flex';
+      document.getElementById('adminPanelWrap').style.display = 'none';
+    }
+    function initAdmin() {
+      if (adminToken) {
+        document.getElementById('adminLoginWrap').style.display = 'none';
+        document.getElementById('adminPanelWrap').style.display = 'block';
+        loadAdminDashboard();
+      } else {
+        document.getElementById('adminLoginWrap').style.display = 'flex';
+        document.getElementById('adminPanelWrap').style.display = 'none';
+      }
+    }
+    function adminSection(name, btn) {
+      document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('admin' + name.charAt(0).toUpperCase() + name.slice(1)).classList.add('active');
+      btn.classList.add('active');
+      if (name === 'dashboard') loadAdminDashboard();
+      if (name === 'orders') loadAdminOrders();
+      if (name === 'products') loadAdminProducts();
+      if (name === 'news') loadAdminNews();
+    }
+    const aHeaders = () => ({ 'Authorization': `Bearer ${adminToken}`, 'Content-Type': 'application/json' });
+
+    async function loadAdminDashboard() {
+      try {
+        const r = await fetch(`${API}/stats`, { headers: aHeaders() });
+        const s = await r.json();
+        document.getElementById('statsGrid').innerHTML = [
+          ['📷', s.products, 'Товаров'],
+          ['📦', s.orders, 'Заказов'],
+          ['🔔', s.new_orders, 'Новых заказов'],
+          ['💰', fmt(s.revenue || 0), 'Выручка'],
+          ['📰', s.news, 'Новостей'],
+        ].map(([ic, n, l]) => `<div class="stat-card"><div class="stat-card-num">${ic} ${n}</div><div class="stat-card-lbl">${l}</div></div>`).join('');
+      } catch (e) { }
+      loadRecentOrders();
+    }
+    async function loadRecentOrders() {
+      try {
+        const r = await fetch(`${API}/orders`, { headers: aHeaders() });
+        const d = await r.json();
+        const orders = (d.orders || []).slice(0, 5);
+        document.getElementById('recentOrders').innerHTML = ordersTableHTML(orders);
+      } catch (e) { }
+    }
+    async function loadAdminOrders() {
+      try {
+        const r = await fetch(`${API}/orders`, { headers: aHeaders() });
+        const d = await r.json();
+        document.getElementById('ordersTable').innerHTML = ordersTableHTML(d.orders || []);
+      } catch (e) { }
+    }
+    function ordersTableHTML(orders) {
+      if (!orders.length) return '<div class="empty-state">Нет заказов</div>';
+      const statuses = ['new', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled'];
+      const statusRu = { new: 'Новый', confirmed: 'Подтверждён', processing: 'В обработке', shipped: 'Отправлен', delivered: 'Доставлен', cancelled: 'Отменён' };
+      return `<table class="admin-table"><thead><tr>
+    <th>Номер</th><th>Клиент</th><th>Телефон</th><th>Сумма</th><th>Доставка</th><th>Статус</th><th>Дата</th><th>Действие</th>
+  </tr></thead><tbody>${orders.map(o => `<tr>
+    <td><strong>${o.order_number}</strong></td>
+    <td>${o.customer_name}</td>
+    <td><a href="tel:${o.customer_phone}" style="color:var(--red);text-decoration:none">${o.customer_phone}</a></td>
+    <td style="font-family:var(--fd);font-size:14px">${fmt(o.total)}</td>
+    <td>${o.delivery_type === 'delivery' ? 'Доставка' : 'Самовывоз'}</td>
+    <td><span class="status-badge status-${o.status}">${statusRu[o.status] || o.status}</span></td>
+    <td>${new Date(o.created_at).toLocaleDateString('ru-RU')}</td>
+    <td>
+      <select style="background:var(--g2);border:1px solid var(--g3);color:var(--white);font-size:11px;padding:3px 6px;border-radius:2px;cursor:pointer" onchange="changeOrderStatus(${o.id},this.value)">
+        ${statuses.map(s => `<option value="${s}" ${s === o.status ? 'selected' : ''}>${statusRu[s]}</option>`).join('')}
+      </select>
+    </td>
+  </tr>`).join('')}</tbody></table>`;
+    }
+    async function changeOrderStatus(id, status) {
+      await fetch(`${API}/orders/${id}/status`, { method: 'PATCH', headers: aHeaders(), body: JSON.stringify({ status }) });
+      toast('Статус обновлён');
+    }
+    async function loadAdminProducts() {
+      try {
+        const r = await fetch(`${API}/products?limit=100`, { headers: aHeaders() });
+        const d = await r.json();
+        document.getElementById('productsTable').innerHTML = `<table class="admin-table"><thead><tr>
+      <th>Название</th><th>Модель</th><th>Категория</th><th>Цена</th><th>Остаток</th><th>Статус</th>
+    </tr></thead><tbody>${(d.products || []).map(p => `<tr onclick="openProduct('${p.slug}')" style="cursor:pointer">
+      <td><strong>${p.name_ru}</strong></td>
+      <td style="font-family:var(--fm);font-size:10px;color:var(--g4)">${p.model}</td>
+      <td>${p.category_name || '-'}</td>
+      <td style="font-family:var(--fd);font-size:14px">${fmt(p.price)}</td>
+      <td>${p.stock > 5 ? `<span style="color:#4ade80">${p.stock} шт.</span>` : p.stock > 0 ? `<span style="color:#fb923c">${p.stock} шт.</span>` : `<span style="color:var(--g4)">Нет</span>`}</td>
+      <td>${p.badge ? `<span class="status-badge status-confirmed">${p.badge}</span>` : '-'}</td>
+    </tr>`).join('')}</tbody></table>`;
+      } catch (e) { }
+    }
+    async function loadAdminNews() {
+      try {
+        const r = await fetch(`${API}/news`);
+        const d = await r.json();
+        document.getElementById('newsTable').innerHTML = `<table class="admin-table"><thead><tr>
+      <th>Заголовок</th><th>Дата</th><th>Действие</th>
+    </tr></thead><tbody>${(d.news || []).map(n => `<tr>
+      <td><strong>${n.title_ru}</strong></td>
+      <td>${new Date(n.created_at).toLocaleDateString('ru-RU')}</td>
+      <td><button class="btn-change-status" onclick="openArticle('${n.slug}');go('article')">Читать</button></td>
+    </tr>`).join('')}</tbody></table>`;
+      } catch (e) { }
+    }
+
+    // ── INIT ──────────────────────────────────────────
+    updateCartCount();
+    initHome();
+
+    // IntersectionObserver for fi elements
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+    }, { threshold: .1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+    setTimeout(() => {
+      document.querySelectorAll('#page-home .fi').forEach((el, i) => {
+        setTimeout(() => el.classList.add('v'), i * 100);
+      });
+    }, 100);
+
+  </script>
+</body>
+
+</html>
